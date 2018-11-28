@@ -102,7 +102,7 @@ class WaveDate(object):
         self.label = np.array(self.label).flatten().astype(np.int64)
         return
 
-    def add_noise(self, snr=0):  # 为每个样本添加白噪声
+    def add_noise(self, snr):  # 为每个样本添加白噪声
         self.snr = snr # 噪声分贝
         self.data_noise = self.data_cut   # 存储加噪声的时域波形
         for i in range(self.data_cut.shape[0]):  # 遍历样本
@@ -127,6 +127,25 @@ class WaveDate(object):
             std = 1e-16
         normwave = (wave - mean)/std
         return normwave
+
+    # def trans_fft(self):
+    #     xs = x1
+    #     xf = np.fft.fft(xs)
+    #     mean = np.mean(wave)
+    #     std = np.std(wave)
+    #     if std <= 1e-16:
+    #         std = 1e-16
+    #     wave_fft = (wave - mean)/std
+    #     return wave_fft
+    def trans_fft(self):  # 对每个样本做fft变化
+        self.data_fft = self.data_cut   # 存储加噪声的时域波形
+        for i in range(self.data_cut.shape[0]):  # 遍历样本
+            for j in range(self.data_cut.shape[2]):  # 遍历通道
+                wave = self.data_cut[i, :, j]
+                temp = np.fft.fft(wave)
+                self.data_fft[i, :, j] = np.abs(temp)
+        return
+
 
     def finger_wave(self, image_size=cfg.IMAGE_SIZE):
         self.image_size = image_size  # 频谱图尺寸
@@ -190,16 +209,20 @@ if __name__ == '__main__':
     wave_train = WaveDate()
     wave_train.load_data(class_name={fault_name: 3}, position_name=[position_name], load_name='0')
     x1 = wave_train.data_full
+    # print(x1.shape)
     x1 = np.array(x1[0][position_name])
     wave_train.wave_cut()
-    wave_train.add_noise(10)
+    wave_train.add_noise(0)
+    wave_train.trans_norm()
+    wave_train.trans_fft()
     x1 = wave_train.data_cut
     x1 = np.squeeze(x1)
     # wave_train.load_data(class_name={fault_name: 3}, position_name=[position_name], load_name='1')
     # x2 = wave_train.data_full
     # x2 = np.array(x2[0][position_name])
     # wave_train.load_data(class_name={fault_name: 3}, position_name=[position_name], load_name='2')
-    # x3 = wave_train.data_full
+    # x3 = wa
+    #     wave_train.add_noise(10)ve_train.data_full
     # x3 = np.array(x3[0][position_name])
     # wave_train.load_data(class_name={fault_name: 3}, position_name=[position_name], load_name='3')
     # x4 = wave_train.data_full
@@ -209,15 +232,16 @@ if __name__ == '__main__':
     x1 = x1[10]
     sampling_rate = 12000
     plt.title('Beat wavform %s_%s'% (fault_name, position_name))
-    plt.subplot(4, 1, 1)
-    librosa.display.waveplot(x1, sr=sampling_rate)
-    xs = x1
-    xf=np.fft.fft(xs)
-    freqs = np.fft.fftfreq(sampling_rate, 1.0/sampling_rate)
-    plt.subplot(4, 1, 2)
+
+    # librosa.display.waveplot(x1, sr=sampling_rate)
+    # xs = x1
+    # xf=np.fft.fft(xs)
+    freqs = np.fft.fftfreq(2048, 1.0/sampling_rate)
     temp1 = freqs[1:1024]
-    temp2 = np.abs(xf)[1:1024]
-    # plt.plot(freqs, np.abs(xf_avg), 'r')  # 显示原始信号的FFT模值
+    temp2 = x1[1:1024]
+    plt.subplot(4, 1, 1)
+    plt.plot(freqs, x1, 'r')  # 显示原始信号的FFT模值
+    plt.subplot(4, 1, 2)
     plt.plot(temp1, temp2, 'r')  # 显示原始信号的FFT模值
     plt.show()
 
