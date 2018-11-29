@@ -76,7 +76,6 @@ class WaveDate(object):
                 if postion not in temp:
                    temp[postion] = np.zeros(max_len, np.float32)
             self.data_full.append(temp)
-        print('aa')
         return
 
 
@@ -193,7 +192,6 @@ class WaveDate(object):
         #     for i in range(channel_size):
         #
         return x.astype(np.float32)  # 因为np默认为float64，而torch的参数默认为FloatTensor，而不是DoubleTensor
-
 
 
 
