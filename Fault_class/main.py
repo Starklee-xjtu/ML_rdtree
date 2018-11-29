@@ -9,15 +9,16 @@ from sklearn.multiclass import OneVsRestClassifier
 from sklearn.metrics import jaccard_similarity_score
 from sklearn.linear_model import LogisticRegression
 
-rf_per = np.empty([5,1],dtype=float)
-knn_per = np.empty([5,1],dtype=float)
-lg_per = np.empty([5,1],dtype=float)
-rf_per_val = np.empty([5,1],dtype=float)
-knn_per_val = np.empty([5,1],dtype=float)
-lg_per_val = np.empty([5,1],dtype=float)
-num = 0
-for nos in range(-10, 10, 4):
+rf_per = np.empty([6,1],dtype=float)
+knn_per = np.empty([6,1],dtype=float)
+lg_per = np.empty([6,1],dtype=float)
+rf_per_val = np.empty([6,1],dtype=float)
+knn_per_val = np.empty([6,1],dtype=float)
+lg_per_val = np.empty([6,1],dtype=float)
+num = -1
+for nos in range(-10, 11, 4):
     num = num+1
+    print(nos)
     wave_train = WaveDate()
     wave_train.load_data(class_name=cfg.CLASS_NAME, position_name=cfg.POSITION_NAME, load_name='1')
     wave_train.wave_cut()
@@ -69,9 +70,21 @@ for nos in range(-10, 10, 4):
     ovr_jaccard_score = jaccard_similarity_score(Y_test, Y_pred_ovr)
     lg_per_val[num] = ovr_jaccard_score
     print('finish one round')
-print(rf_per)
-print(rf_per_val)
-print(knn_per)
-print(knn_per_val)
-print(lg_per)
-print(lg_per_val)
+for i in range(0, 6):
+    print(rf_per[i], end=" ")
+
+print('n')
+for i in range(0, 6):
+    print(rf_per_val[i], end=" ")
+print('n')
+for i in range(0, 6):
+    print(knn_per[i], end=" ")
+print('n')
+for i in range(0, 6):
+    print(knn_per_val[i], end=" ")
+print('n')
+for i in range(0, 5):
+    print(lg_per[i], end=" ")
+print('n')
+for i in range(0, 5):
+    print(lg_per_val[i], end=" ")
