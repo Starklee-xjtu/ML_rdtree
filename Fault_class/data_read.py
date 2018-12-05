@@ -8,7 +8,7 @@ import scipy.io as sio
 import Config as cfg
 from sklearn.metrics import classification_report
 from sklearn.ensemble import RandomForestClassifier
-
+from sklearn.decomposition import PCA
 
 # CLASS_NAME = {'Normal': 0,
 #               'B007': 1,
@@ -229,18 +229,20 @@ if __name__ == '__main__':
     # # log = librosa.power_to_db(sped)
     x1 = x1[10]
     sampling_rate = 12000
-    plt.title('Beat wavform %s_%s'% (fault_name, position_name))
 
-    # librosa.display.waveplot(x1, sr=sampling_rate)
+
     # xs = x1
     # xf=np.fft.fft(xs)
     freqs = np.fft.fftfreq(2048, 1.0/sampling_rate)
     temp1 = freqs[1:1024]
     temp2 = x1[1:1024]
     plt.subplot(4, 1, 1)
-    plt.plot(freqs, x1, 'r')  # 显示原始信号的FFT模值
+    plt.title('Beat wavform %s_%s' % (fault_name, position_name))
+    librosa.display.waveplot(x1, sr=sampling_rate)
+  #  plt.plot(freqs, x1, 'r')  # 显示原始信号的FFT模值
     plt.subplot(4, 1, 2)
     plt.plot(temp1, temp2, 'r')  # 显示原始信号的FFT模值
+    plt.tight_layout()  # 保证图不重叠
     plt.show()
 
 '''
