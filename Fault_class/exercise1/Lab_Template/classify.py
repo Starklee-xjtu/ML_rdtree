@@ -1,6 +1,4 @@
 import numpy as np
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
 from data_read import *
 import Config
@@ -70,13 +68,6 @@ X_test = np.squeeze(X_test)
 X_test=pca.transform(X_test)
 Y_test = wave_test.label
 
-rfc = RandomForestClassifier()
-rfc.fit(X_train, Y_train)
-predict = rfc.predict(X_vali)
-print (rfc.score(X_vali, Y_vali))
-predict = rfc.predict(X_test)
-print (rfc.score(X_test, Y_test))
-
 # Fit an independent logistic regression model for each class using the
 # OneVsRestClassifier wrapper.
 base_lr = LogisticRegression(solver='lbfgs',max_iter=10000)
@@ -91,60 +82,3 @@ Y_pred_ovr = ovr.predict(X_test)
 ovr_jaccard_score = jaccard_similarity_score(Y_test, Y_pred_ovr)
 print (ovr_jaccard_score)
 
-
-
-
-
-
-
-#print (pca.explained_variance_ratio_)
-#print (pca.explained_variance_)
-
-'''
-rfc = RandomForestClassifier()
-rfc.fit(X_train, Y_train)
-predict = rfc.predict(X_test1)
-rf_per[num] = rfc.score(X_test1, Y_test1)
-predict = rfc.predict(X_test)
-rf_per_val[num] = rfc.score(X_test, Y_test)
-
-knn_c = KNeighborsClassifier()
-knn_c.fit(X_train, Y_train)
-predict = knn_c.predict(X_test1)
-knn_per[num] = knn_c.score(X_test1, Y_test1)
-predict = knn_c.predict(X_test)
-knn_per_val[num] = knn_c.score(X_test, Y_test)
-
-# Fit an independent logistic regression model for each class using the
-# OneVsRestClassifier wrapper.
-base_lr = LogisticRegression(solver='lbfgs',max_iter=10000)
-ovr = OneVsRestClassifier(base_lr)
-ovr.fit(X_train, Y_train)
-
-Y_pred_ovr = ovr.predict(X_test1)
-ovr_jaccard_score = jaccard_similarity_score(Y_test1, Y_pred_ovr)
-lg_per[num] = ovr_jaccard_score
-
-Y_pred_ovr = ovr.predict(X_test)
-ovr_jaccard_score = jaccard_similarity_score(Y_test, Y_pred_ovr)
-lg_per_val[num] = ovr_jaccard_score
-print('finish one round')
-for i in range(0, 6):
-print(rf_per[i], end=" ")
-
-print('n')
-for i in range(0, 6):
-print(rf_per_val[i], end=" ")
-print('n')
-for i in range(0, 6):
-print(knn_per[i], end=" ")
-print('n')
-for i in range(0, 6):
-print(knn_per_val[i], end=" ")
-print('n')
-for i in range(0, 6):
-print(lg_per[i], end=" ")
-print('n')
-for i in range(0, 6):
-print(lg_per_val[i], end=" ")
-'''

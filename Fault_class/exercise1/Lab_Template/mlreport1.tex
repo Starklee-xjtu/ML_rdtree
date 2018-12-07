@@ -86,7 +86,7 @@
 % lab write-up.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\labtitle}{PCA Isomap LLE}
+\newcommand{\labtitle}{PCA KPCA LLE}
 \newcommand{\authorname}{李梓铉}
 \newcommand{\professor}{孟德宇教授}
 \newcommand{\classno}{3118103163}
@@ -136,65 +136,260 @@ This is a lab template which has a ton of different things which are useful in w
 第二类方法就是非线性方法，非线性方法中的第一种是核化线性降维，如核主成分分析（KPCA），使用核函数，将高维特征空间中得数据投影到一个超平面上实现降维。第二种是流形学习（manifold learning），这是一种借鉴拓扑流形概念的降维方法。低维流形嵌入到高维空间的分布虽然很复杂，但局部仍然具有欧式空间的性质，因此可以在局部建议降维映射关系，然后在推广至全局。著名的流形学习方法有等度量映射（Isometric mapping）Isomapping，局部性嵌入（local linear embedding）LLE等。\vspace{3mm} 
 
 
-In this lab, students will use a round-robin with interrupt software architecture using the \texttt{LEDTest1.c} example program as the basis for the design.  The software needs to do 4 main functions.  First the SW needs to be able to initialize the peripheral units (timer and programmable flags).  Second the SW needs to be able to respond to button.  Third the SW needs to be able to respond to timer interrupts.  And fourth, the SW needs to be able to control the LED’s per the buttons and the timer interrupt.  
-From an architectural standpoint, the SW can be broken into 4 main sections:
+在本文中，将使用PCA，Kpca，Isomap，LLE四种方法对随机生成的高维数据进行降维。通过实验了解各类降维方法的特点，在理解原理的基础上对各类方法有更直观的认识，然后再对一个现实工程问题进行方法的应用。报告将包含以下5个主要部分:
 \begin{itemize}
-	\item LED Control -- functions to control the LED's
-	\item Interrupt -- ISR
-	\item Timer Control -- functions to control the timer units
-	\item Main Loop 
+	\item 主成分分析方法（PCA）
+	\item 核主成分分析方法（KPCA） 
+	\item 局部性嵌入（LLE）
+	\item 工程应用
+	\item 结论与讨论
 \end{itemize}
 \vspace{3mm}  
 
-Students will need one timer interrupt.  In this interrupt, they should set a flag indicating that the ISR was asserted.  
-The main control SW needs to be able to do 2 things.  First it needs to initialize the timer unit, the programmable flags and the interrupt.  Next it needs to read the button press, the flags updated by the ISR’s, and output the correct LED’s.  
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Equipment}
-There is a minimal amount of equipment to be used in this lab.  The few requirements are listed below:
+\subsection{编译环境}
+使用python语言进行实验，相关的编译环境如下:
 	\begin{itemize}
-		\item Xilinx ISE Navigator Software (v10.0.1)
-		\item Computer capable of running the software mentioned
-		\item Spartan 3E FPGA Developer Board (For Hardware Simulation)
+		\item 操作系统Windows 10
+		\item python3.6编译器
+		\item scikit-learn 0.20.1 （机器学习python库）
+		\item numpy （python数组处理库）
+		\item matplotlib（python可视化库）
 	\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Procedure}
+%\subsection{Procedure}
 
-	\begin{enumerate}
-		\item Start the ISE Navigator. See the ISE 8.2i Quick Start Tutorial.
-		\item Create a new project.
-		\item Import copies of the Verilog modules AND\_OR, MY\_AND2, and MY\_OR2 to the new project just created.
-		\item Create a Test Bench (called Test Fixture in Verilog).
-		\item Create the actual input stimulus.
-		\item Run the simulation, examine the waveforms, and verify functioniality.
-	\end{enumerate}
+%	\begin{enumerate}
+%		\item Start the ISE Navigator. See the ISE 8.2i Quick Start Tutorial.
+%		\item Create a new project.
+%		\item Import copies of the Verilog modules AND\_OR, MY\_AND2, and MY\_OR2 to the new project just created.
+%		\item Create a Test Bench (called Test Fixture in Verilog).
+%		\item Create the actual input stimulus.
+%		\item Run the simulation, examine the waveforms, and verify functioniality.
+%	\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\section{Schematic Diagrams}
-This section consists of screenshots taken during the laboratory procedure.  One set of the screenshots is of the periods captured by the oscilliscope and the other set is captured by the logic analyzer.
+\section{PCA}
+\subsection{方法介绍}
+主成分分析（Principal Component Analysis）是最常用的一种降维方法。PCA通过用一个超平面对正交空间中的所有样本点进行近似表达。这个超平面要满足两点：1. 重构性：样本点到这个超平面的距离都足够近。 2.最大可分性：样本点在这个超平面上的投影能尽可能分开。\vspace{3mm}  
 
-	% You can refer to this set of images by using \ref{fig:oscil}.  ie "please refer to Figure \ref{fig:oscil}."
-	% You can refer to a specific subimage by using \ref{fig:Per6A}. ie "please refer to Figure \ref{fig:Per6A}."
-   % I prefer the quality of a .png image, but you may use other extensions such as .jpg.
+
+算法的主要过程可以总结如下：
+
+
+
+\begin{enumerate}
+	\item 输入：样本集D，期望的低维空间维数n。
+	\item 对所有样本进行中心化。
+	\item 计算样本的协方差矩阵。
+	\item 对协方差矩阵做特征值分解。
+	\item 排序特征值取最大的n个特征值所对应的特征向量。
+	\item 输出:特征向量对应的投影矩阵
+\end{enumerate}
+
+
+
+降维后的低维空间的维数由使用者决定，可以通过选不同的维数通过交叉验证得到较好的维数n，显然在PCA过程中，较小的特征值对应的特征向量对应的信息被舍弃了，这是降维的必要结果，因为较小的特征值对应的信息往往是无用的噪声信息，舍弃后可以使样本采样密度增大，一定程度上起到去噪的效果。
+
+\subsection{实验介绍}
+仿照sci-kit示例程序，本实验使用numpy生成三个随机数组，将数组通过线性变化，变换为三维空间中的点云，点云分布有显著的接近一个平面（x-y-z=0）上分布的特征。然后程序通过调用sci-kit的PCA程序，设置低维空间维数为3，得到一个超平面(近似平面x-y-z=0)来近似所有的样本点，并进行了可视化。
+
+可视化结果如下。
+
 	\begin{figure}[H]
 	  \centering
-	  \subfloat[LED4 Period]{\label{fig:Per6A}\includegraphics[width=0.4\textwidth]{period_led4.png}} \\                
-	  \subfloat[LED5 Period]{\label{fig:Per6A}\includegraphics[width=0.4\textwidth]{period_led5.png}}
-	  \subfloat[LED6 Period]{\label{fig:Per6A}\includegraphics[width=0.4\textwidth]{period_led6.png}}
-	  \caption{Period of LED blink rate captured by osciliscope.}
+	  \label{fig:Per6A}\includegraphics[width=0.4\textwidth]{pca.png}\
+	  \caption{PCA点云近似可视化结果}
 	  \label{fig:oscil}    
 	\end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{源代码}
+实验使用的源代码如下.  \vspace{5mm}
+	\lstinputlisting{plot_pca_3d.py}
+	\vspace{3mm}
+
+
+
+
+
+
+\newpage
+\section{KPCA}
+\subsection{方法介绍}
+核主成分分析（Principal Component Analysis）是核化线性降维的一种方法。核函数是一种数学技巧变换技巧，可以将样本映射到一个高维特征空间去。KPCA使用核函数可以对样本进行非线性的映射再做降维处理。KPCA的优势在于，映射后的数据集在映射后通常可以保留聚类特征，有时对于扭曲的流形数据集也有很好的效果。KPCA常用的核函数有Gaussian Radial Basis Function (RBF)核函数。Gaussian RBF Function如下：
+
+\begin{align*}
+		\phi \gamma(x,\iota) = exp(-\gamma \lVert x-l \rVert ^2)\\
+\end{align*}
+
+通过将数据集的每一个样本用核函数映射到一个高维特征空间去。相比原来的样本，新样本会有很多新的维度，同时也因此提高了数据集线性可分的概率。然后再在特征空间中实施PCA即可。核化的弊端在于训练集如果很大的话，那么核化后的数据的feature将非常多，并且为了获得投影，KPCA要对所有样本求和，计算开销较大。
+\vspace{3mm}  
+
+算法的主要过程可以总结如下：
+
+
+
+\begin{enumerate}
+	\item 输入：样本集D，期望的低维空间维数n，核函数$\phi$
+	\item 得到样本在高维特征空间的像。
+	\item 实施PCA
+	\item 输出:特征向量对应的投影矩阵
+\end{enumerate}
+
+
+
+
+\subsection{实验介绍}
+仿照sci-kit示例程序，本实验使用scikit的datasets库方法，生成两组sample，在x1，x2空间上分布近似为两个同心圆。先调用了PCA，对样本进行了处理并输出了最大特征值对应的两个特征向量下的样本空间。然后调用scikit的K\_pca方法，使用rbf\_kernel，对样本进行了处理。并输出了最大的两个特征值对应的特征向量描述的样本空间。然后输出了在原x1，x2空间中，经过KPCA处理的样本。
+可视化结果如下。
+
+	\begin{figure}[H]
+	  \centering
+	  \label{fig:Per3A}\includegraphics[width=0.8\textwidth]{Kpca.png}\
+	  \caption{KPCA可视化结果}
+	  \label{fig:oscil}    
+	\end{figure}
+	
+可以看出从图Projection by KPCA看出，经过KPCA处理，新的样本变的线性可分了，并且根据Original space after inverse transform可以看出，KPCA很好的保留了样本的原始聚类特征。而从Projection by PCA可以看出，线性降维后的样本和原来的样本很接近，并没有提取出样本中的聚类特征。
+
+\subsection{源代码}
+实验使用的源代码如下.  \vspace{5mm}
+	\lstinputlisting{plot_kernel_pca.py}
+	\vspace{3mm}
+
+
+
+
+\newpage
+\section{LLE}
+\subsection{方法介绍}
+局部线性嵌入（Locally Linear Embedding, 简称LLE）是流形学习的一种。与Isomap通过建立临近连接图再使用MDS方法降维的方法不同，LLE方法通过保持邻域样本之间的线性关系降维。即一个样本$x_1$可以通过邻域样本$x_i,x_j,x_k$线性表示的话，那么经过LLE降维后，该关系将继续保持。这使得LLE算法对于卷曲的manifold数据的处理非常有效，尤其是当噪声较小的时候。\vspace{3mm}  
+
+算法的主要过程可以总结如下：
+
+
+\begin{enumerate}
+	\item 输入：样本集$D={x_1,x_2,...,x_m}$，期望的低维空间维数n，临近参数k
+	\item for i = 1,2,...,m do
+	\item 确定$x_i$的k临近
+	\item 通过$\min\limits_{1,...,m} \sum_{i = 1} ^m(\lVert x_i - \sum\limits_{j \in Q_i }(w_{ij}  x_j) \rVert)^2$ 求得对$x_i$线性重构的系数$w_ij$，$j \in Q_i$
+	\item 对于$j \notin Q_i$，令$w_{ij}=0$
+	\item endfor
+	\item $M=(I-W)^T(I-W)$
+	\item 对M进行特征分解
+	\item 返回M的最小的n个特征值的特征向量
+	\item 输出:样本集在特征向量对应的低维空间的投影
+\end{enumerate}
+
+
+但由于LLE算法先要寻找k邻近$O(mlog(m)nlog(k))$，再计算wight矩阵$O(mnk^3)$，然后建立低维度的表示$O(m^2)$。最后一项的计算复杂度$（m^2）$导致LLE对于大型的数据集的计算基本是无能为力的。
+\subsection{实验介绍}
+仿照sci-kit示例程序，本实验使用scikit的datasets库方法，生成经典的manifolding 数据“瑞士卷”样本，在空间中呈现卷曲的状态。然后使用LLE方法对数据样本进行了处理，输出了在新的低维空间上的数据分布。可视化结果如下：
+
+	\begin{figure}[H]
+	  \centering
+	  \label{fig:Per3A}\includegraphics[width=0.8\textwidth]{LLE.png}\
+	  \caption{LLE可视化结果}
+	  \label{fig:oscil}    
+	\end{figure}
+	
+可以看出从图中看出，LLE方法很好的实现了对manifolding数据在低维空间的展开。
+
+\subsection{源代码}
+实验使用的源代码如下.  \vspace{5mm}
+	\lstinputlisting{plot_swissroll.py}
+	\vspace{3mm}
+
+
+
+
+\newpage
+\section{工程应用}
+\subsection{背景介绍}
+前文的样本均为人为产生的，有很好的特征可供演示各类算法的特点。本节将对实际工程中得信号进行降维，以达到工程目的。\\
+旋转机械属于能源与动力工程领域中使用较为广泛的机械设备，而转子是其核心部件。转子系统在运行过程中的振动信号会因裂纹故障发生显著的的变化。本节通过使用机器学习方法，对Case Western Reserve University Bearing Data Center Website上的转子故障数据，实现对转子故障的分析诊断。
+实验使用一台2hp Reliance电动马达进行，加速度数据在靠近和远离马达轴承的位置进行测量。使用电火花加工( EDM )在电机轴承上播种故障。本研究使用直径为0.007英寸到0.04英寸直径裂纹故障的转子数据。转子数据中包括出现故障的轴承以及正常的轴承安装到测试电机中，电机负载为0至3马力(电机转速为1797至1720 RPM )时的振动数据。共9个类别对应如下。
+{'Normal': 0, 'B007': 1,'B014': 2,'B021': 3,'IR007': 4，'IR014': 5，'IR021': 6,'OR007@6': 7,'OR014@6': 8,'OR021@6': 9, }
+  数字代表裂纹直径，如007为0.007英寸，字母B，IR(inner race)，OR(outer race)代表同一故障实验不同测点处的数据。
+
+	\begin{figure}[H]
+	  \centering
+	  \label{fig:Per3A}\includegraphics[width=1.0\textwidth]{summary.png}\
+	  \caption{故障信息表格}
+	  \label{fig:oscil}    
+	\end{figure}
+
+
+\vspace{3mm}  
+
+本研究以0,1,2马力负载时的时序信号作为训练集，3马力负载时的时序信号作为测试集，通过使用PCA降维，然后使用的机器学习算法Logistics Regression，实现multi-label classification任务，并对比降维前后的分类效果。
+
+\subsection{实验介绍}
+先对数据进行预处理，过程如下：
+\begin{enumerate}
+	\item 读入数据(load\_data)
+	\item 切割数据(wave\_cut) 通过给定的时间窗大小(2048)和期望的sample数量(256)，将一个时序信号切割成对应的sample signal。
+	\item 对信号增加白噪声（add\_noise）,实现数据增强，使得切割得到的数据更贴近于实际信号。
+	\item 归一化（trans\_norm）
+	\item FFT快速傅立叶变换（trans\_fft）实际是对数据的一次降维，将时序信号转化为有限个频域上的幅值。
+\end{enumerate}
+处理后的信号如下图
+	\begin{figure}[H]
+	  \centering
+	  \label{fig:Per3A}\includegraphics[width=0.8\textwidth]{timesig.png}\
+	  \caption{R014\_DE 的时序信号以及频域信号}
+	  \label{fig:oscil}    
+	\end{figure}
+	
+	\begin{figure}[H]
+	  \centering
+	  \label{fig:Per3A}\includegraphics[width=0.8\textwidth]{whitnoise.png}\
+	  \caption{R014\_DE 的时序信号以及频域信号}
+	  \label{fig:oscil}    
+	\end{figure}
+	
+因为窗函数大小为2048，所以经过傅里叶变换，信号频域大小为1024。但是这些频率显然并不都是与故障相关的，直观上样本间方差较大的频率更有可能包含故障信息，因此对频域信号做PCA （主成分分析）来进一步降维，通过多次试验，取低维空间维数100，将振动数据转化为更低维子空间中信息更密集的样本点。然后分别使用sci\-kit库中的Logistics Regression进行训练和分类。 然后再使用未做PCA的样本进行训练和分类，得到实验结果。
+
+PCA前分类正确率为：0.8826
+
+PCA后分类正确率为：0.9004
+
+可以看出，大幅压缩样本维度后，分类正确率并没有受到影响且有略微的提升。虽然分类正确率没有很高，但达到了基本的分类目的，用于工程实践还需要进一步的优化。
+
+
+\subsection{源代码}
+实验使用的源代码如下。（ 省略了data\_read读入数据部分） \vspace{5mm}
+	\lstinputlisting{classify.py}
+	\vspace{3mm}
+	
+
+\newpage
+\section{结论与讨论}
+实验的目的是通过使用代码，了解如何使用降维方法对数据进行降维，熟悉相关的编程环境以及调用方式。底层的算法实现并不是本实验的要求。
+
+本文通过使用Sci-kit learn python库实现了三种机器学习算法的实验，尽管没有从最底层的代码进行实现，但是经过实验实现了三种降维算法的应用。PCA属于线性降维方法，KPCA属于非线性降维方法，LLE属于非线性降维方法中的流形学习方法。并对一个工程实际数据进行了分析，实现了基本的分类目标。通过实际的实验，对于降维的意义通过可视化有了更加直观的认识。对于算法原理也有了更深刻的认识。降维的线性与非线性方法的区别与特点也在实验中有所体现。如果之后有时间，会花更多时间，从底层代码完成三种机器学习算法，而不是单纯调库。
+
+报告写作过程中参考了周志华《机器学习》,以及《Hands on machine learning with sci-kit learn》。代码demo部分来源于scikit-learn网站。
+
+最后感谢孟教授这学期的教学，您的课干货满满，深入浅出。只是有些可惜课时太少，很希望未来机器学习这门课可以调整成全周的课程。顺颂时祺。
+
+\end{document} % DONE WITH DOCUMENT!
+
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Experiment Data}
 This section will consist of the important code blocks which were changed in order to meet the requirements of the lab.  \vspace{5mm}
 	\lstinputlisting{code.c}
 	\vspace{3mm}
+
+
 
 % IF YOU'D RATHER TYPE THE CODE, OR HAVE A SMALLER BLOCK OF CODE, USE THIS:
 %\begin{lstlisting}

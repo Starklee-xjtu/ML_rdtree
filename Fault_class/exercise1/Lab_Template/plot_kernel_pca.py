@@ -8,9 +8,6 @@ that makes data linearly separable.
 """
 print(__doc__)
 
-# Authors: Mathieu Blondel
-#          Andreas Mueller
-# License: BSD 3 clause
 
 import numpy as np
 import matplotlib.pyplot as plt
