@@ -1,30 +1,30 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % An example of a lab report write-up.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-% This is a combination of several labs that I have done in the past for 
-% Computer Engineering, so it is not to be taken literally, but instead used as 
-% a great starting template for your own lab write up.  When creating this 
-% template, I tried to keep in mind all of the functions and functionality of 
-% LaTeX that I spent a lot of time researching and using in my lab reports and 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This is a combination of several labs that I have done in the past for
+% Computer Engineering, so it is not to be taken literally, but instead used as
+% a great starting template for your own lab write up.  When creating this
+% template, I tried to keep in mind all of the functions and functionality of
+% LaTeX that I spent a lot of time researching and using in my lab reports and
 % include them here so that it is fairly easy for students first learning LaTeX
-% to jump on in and get immediate results.  However, I do assume that the 
-% person using this guide has already created at least a "Hello World" PDF 
-% document using LaTeX (which means it's installed and ready to go). 
+% to jump on in and get immediate results.  However, I do assume that the
+% person using this guide has already created at least a "Hello World" PDF
+% document using LaTeX (which means it's installed and ready to go).
 %
-% My preference for developing in LaTeX is to use the LaTeX Plugin for gedit in 
-% Linux.  There are others for Mac and Windows as well (particularly MikTeX).  
-% Another excellent plugin is the Calc2LaTeX plugin for the OpenOffice suite.  
-% It makes it very easy to create a large table very quickly.  
+% My preference for developing in LaTeX is to use the LaTeX Plugin for gedit in
+% Linux.  There are others for Mac and Windows as well (particularly MikTeX).
+% Another excellent plugin is the Calc2LaTeX plugin for the OpenOffice suite.
+% It makes it very easy to create a large table very quickly.
 %
-% Professors have different tastes for how they want the lab write-ups done, so 
-% check with the section layout for your class and create a template file for 
+% Professors have different tastes for how they want the lab write-ups done, so
+% check with the section layout for your class and create a template file for
 % each class (my recommendation).
 %
 % Also, there is a list of common commands at the bottom of this document.  Use
 % these as a quick reference.  If you'd like more, you can view the "LaTeX Cheat
-% Sheet.pdf" included with this template material. 
+% Sheet.pdf" included with this template material.
 %
-% (c) 2009 Derek R. Hildreth <derek@derekhildreth.com> http://www.derekhildreth.com 
+% (c) 2009 Derek R. Hildreth <derek@derekhildreth.com> http://www.derekhildreth.com
 % This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/1.0/ or send a letter to Creative Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -49,7 +49,7 @@
 }
 
 \definecolor{mygrey}{gray}{.96} % Light Grey
-\lstset{ 
+\lstset{
 	language=[ISO]C++,              % choose the language of the code ("language=Verilog" is popular as well)
    tabsize=3,							  % sets the size of the tabs in spaces (1 Tab is replaced with 3 spaces)
 	basicstyle=\tiny,               % the size of the fonts that are used for the code
@@ -86,9 +86,9 @@
 % lab write-up.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\labtitle}{PCA KPCA LLE}
+\newcommand{\labtitle}{gradient descent method}
 \newcommand{\authorname}{李梓铉}
-\newcommand{\professor}{孟德宇教授}
+\newcommand{\professor}{孙建永教授}
 \newcommand{\classno}{3118103163}
 % END TITLE PAGE CONTENT %%%%%%%%%%%%%%%%%%%%
 
@@ -103,8 +103,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{titlepage}
 \begin{center}
-{\LARGE \textsc{机器学习降维方法实验报告 :} \\ \vspace{4pt}}
-{\Large \textsc{\labtitle} \\ \vspace{4pt}} 
+{\LARGE \textsc{optimization in big data research report} \\ \vspace{4pt}}
+{\Large \textsc{\labtitle} \\ \vspace{4pt}}
 \rule[13pt]{\textwidth}{1pt} \\ \vspace{150pt}
 {\large  \authorname \\ \vspace{10pt}
 学号 \classno\\ \vspace{10pt}
@@ -127,24 +127,25 @@
 \begin{comment}
 This is a lab template which has a ton of different things which are useful in writing lab write-ups in the Computer Eningeering field.  This is demonstrating the comment block. Don't be overwhelmed, it may seem like a lot to take in at a time, but it's worth spending the time learning it.
 \end{comment}
-机器学习通常需要大量的训练样本，而在现实中得到的数据通常很难满足训练样本的密集采样，而且属性维度的增加若满足采样条件，会使得样本的数字达到天文数字。在高维情形下出现的数据样本稀疏，巨大的矩阵导致的计算距离困难等等，就是机器学习方法面临的严重障碍“维数灾难”（curse of dimensionality）. 解决维数灾难的重要方法之一是降维（dimension reduction）,通过数学变换将高维空间转变为一个低维子空间使得样本密度提高，降低距离计算的复杂度。一般来说有效的降维方法要保持前后的样本之间的距离。\vspace{3mm} 
+对于凸优化问题，需要计算损失函数L(θ)的极小值（最小值）。由于梯度是函数上升最快的方向，因而梯度下降算法在更新参数θ的梯度时，均是减去参数的梯度。下面的η为学习率。
+\vspace{3mm}
 
-降维的方法主要分为两类：\vspace{3mm} 
+降维的方法主要分为两类：\vspace{3mm}
 
-第一类也是降维最简单的方法就是基于线性变换的线性降维方法，多维缩放（MDS），主成分分析（PCA） 算法均属于此类降维方法。线性降维方法是高维到低维空间的线性映射，但对于现实任务中的很多数据，需要使用非线性映射才能找到适当的低维嵌入。\vspace{3mm} 
+第一类也是降维最简单的方法就是基于线性变换的线性降维方法，多维缩放（MDS），主成分分析（PCA） 算法均属于此类降维方法。线性降维方法是高维到低维空间的线性映射，但对于现实任务中的很多数据，需要使用非线性映射才能找到适当的低维嵌入。\vspace{3mm}
 
-第二类方法就是非线性方法，非线性方法中的第一种是核化线性降维，如核主成分分析（KPCA），使用核函数，将高维特征空间中得数据投影到一个超平面上实现降维。第二种是流形学习（manifold learning），这是一种借鉴拓扑流形概念的降维方法。低维流形嵌入到高维空间的分布虽然很复杂，但局部仍然具有欧式空间的性质，因此可以在局部建议降维映射关系，然后在推广至全局。著名的流形学习方法有等度量映射（Isometric mapping）Isomapping，局部性嵌入（local linear embedding）LLE等。\vspace{3mm} 
+第二类方法就是非线性方法，非线性方法中的第一种是核化线性降维，如核主成分分析（KPCA），使用核函数，将高维特征空间中得数据投影到一个超平面上实现降维。第二种是流形学习（manifold learning），这是一种借鉴拓扑流形概念的降维方法。低维流形嵌入到高维空间的分布虽然很复杂，但局部仍然具有欧式空间的性质，因此可以在局部建议降维映射关系，然后在推广至全局。著名的流形学习方法有等度量映射（Isometric mapping）Isomapping，局部性嵌入（local linear embedding）LLE等。\vspace{3mm}
 
 
 在本文中，将使用PCA，Kpca，Isomap，LLE四种方法对随机生成的高维数据进行降维。通过实验了解各类降维方法的特点，在理解原理的基础上对各类方法有更直观的认识，然后再对一个现实工程问题进行方法的应用。报告将包含以下5个主要部分:
 \begin{itemize}
 	\item 主成分分析方法（PCA）
-	\item 核主成分分析方法（KPCA） 
+	\item 核主成分分析方法（KPCA）
 	\item 局部性嵌入（LLE）
 	\item 工程应用
 	\item 结论与讨论
 \end{itemize}
-\vspace{3mm}  
+\vspace{3mm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{编译环境}
@@ -174,7 +175,7 @@ This is a lab template which has a ton of different things which are useful in w
 \newpage
 \section{PCA}
 \subsection{方法介绍}
-主成分分析（Principal Component Analysis）是最常用的一种降维方法。PCA通过用一个超平面对正交空间中的所有样本点进行近似表达。这个超平面要满足两点：1. 重构性：样本点到这个超平面的距离都足够近。 2.最大可分性：样本点在这个超平面上的投影能尽可能分开。\vspace{3mm}  
+主成分分析（Principal Component Analysis）是最常用的一种降维方法。PCA通过用一个超平面对正交空间中的所有样本点进行近似表达。这个超平面要满足两点：1. 重构性：样本点到这个超平面的距离都足够近。 2.最大可分性：样本点在这个超平面上的投影能尽可能分开。\vspace{3mm}
 
 
 算法的主要过程可以总结如下：
@@ -203,7 +204,7 @@ This is a lab template which has a ton of different things which are useful in w
 	  \centering
 	  \label{fig:Per6A}\includegraphics[width=0.4\textwidth]{pca.png}\
 	  \caption{PCA点云近似可视化结果}
-	  \label{fig:oscil}    
+	  \label{fig:oscil}
 	\end{figure}
 
 \subsection{源代码}
@@ -226,7 +227,7 @@ This is a lab template which has a ton of different things which are useful in w
 \end{align*}
 
 通过将数据集的每一个样本用核函数映射到一个高维特征空间去。相比原来的样本，新样本会有很多新的维度，同时也因此提高了数据集线性可分的概率。然后再在特征空间中实施PCA即可。核化的弊端在于训练集如果很大的话，那么核化后的数据的feature将非常多，并且为了获得投影，KPCA要对所有样本求和，计算开销较大。
-\vspace{3mm}  
+\vspace{3mm}
 
 算法的主要过程可以总结如下：
 
@@ -250,9 +251,9 @@ This is a lab template which has a ton of different things which are useful in w
 	  \centering
 	  \label{fig:Per3A}\includegraphics[width=0.8\textwidth]{Kpca.png}\
 	  \caption{KPCA可视化结果}
-	  \label{fig:oscil}    
+	  \label{fig:oscil}
 	\end{figure}
-	
+
 可以看出从图Projection by KPCA看出，经过KPCA处理，新的样本变的线性可分了，并且根据Original space after inverse transform可以看出，KPCA很好的保留了样本的原始聚类特征。而从Projection by PCA可以看出，线性降维后的样本和原来的样本很接近，并没有提取出样本中的聚类特征。
 
 \subsection{源代码}
@@ -266,7 +267,7 @@ This is a lab template which has a ton of different things which are useful in w
 \newpage
 \section{LLE}
 \subsection{方法介绍}
-局部线性嵌入（Locally Linear Embedding, 简称LLE）是流形学习的一种。与Isomap通过建立临近连接图再使用MDS方法降维的方法不同，LLE方法通过保持邻域样本之间的线性关系降维。即一个样本$x_1$可以通过邻域样本$x_i,x_j,x_k$线性表示的话，那么经过LLE降维后，该关系将继续保持。这使得LLE算法对于卷曲的manifold数据的处理非常有效，尤其是当噪声较小的时候。\vspace{3mm}  
+局部线性嵌入（Locally Linear Embedding, 简称LLE）是流形学习的一种。与Isomap通过建立临近连接图再使用MDS方法降维的方法不同，LLE方法通过保持邻域样本之间的线性关系降维。即一个样本$x_1$可以通过邻域样本$x_i,x_j,x_k$线性表示的话，那么经过LLE降维后，该关系将继续保持。这使得LLE算法对于卷曲的manifold数据的处理非常有效，尤其是当噪声较小的时候。\vspace{3mm}
 
 算法的主要过程可以总结如下：
 
@@ -293,9 +294,9 @@ This is a lab template which has a ton of different things which are useful in w
 	  \centering
 	  \label{fig:Per3A}\includegraphics[width=0.8\textwidth]{LLE.png}\
 	  \caption{LLE可视化结果}
-	  \label{fig:oscil}    
+	  \label{fig:oscil}
 	\end{figure}
-	
+
 可以看出从图中看出，LLE方法很好的实现了对manifolding数据在低维空间的展开。
 
 \subsection{源代码}
@@ -319,11 +320,11 @@ This is a lab template which has a ton of different things which are useful in w
 	  \centering
 	  \label{fig:Per3A}\includegraphics[width=1.0\textwidth]{summary.png}\
 	  \caption{故障信息表格}
-	  \label{fig:oscil}    
+	  \label{fig:oscil}
 	\end{figure}
 
 
-\vspace{3mm}  
+\vspace{3mm}
 
 本研究以0,1,2马力负载时的时序信号作为训练集，3马力负载时的时序信号作为测试集，通过使用PCA降维，然后使用的机器学习算法Logistics Regression，实现multi-label classification任务，并对比降维前后的分类效果。
 
@@ -341,16 +342,16 @@ This is a lab template which has a ton of different things which are useful in w
 	  \centering
 	  \label{fig:Per3A}\includegraphics[width=0.8\textwidth]{timesig.png}\
 	  \caption{R014\_DE 的时序信号以及频域信号}
-	  \label{fig:oscil}    
+	  \label{fig:oscil}
 	\end{figure}
-	
+
 	\begin{figure}[H]
 	  \centering
 	  \label{fig:Per3A}\includegraphics[width=0.8\textwidth]{whitnoise.png}\
 	  \caption{R014\_DE 的时序信号以及频域信号}
-	  \label{fig:oscil}    
+	  \label{fig:oscil}
 	\end{figure}
-	
+
 因为窗函数大小为2048，所以经过傅里叶变换，信号频域大小为1024。但是这些频率显然并不都是与故障相关的，直观上样本间方差较大的频率更有可能包含故障信息，因此对频域信号做PCA （主成分分析）来进一步降维，通过多次试验，取低维空间维数100，将振动数据转化为更低维子空间中信息更密集的样本点。然后分别使用sci\-kit库中的Logistics Regression进行训练和分类。 然后再使用未做PCA的样本进行训练和分类，得到实验结果。
 
 PCA前分类正确率为：0.8826
@@ -364,7 +365,7 @@ PCA后分类正确率为：0.9004
 实验使用的源代码如下。（ 省略了data\_read读入数据部分） \vspace{5mm}
 	\lstinputlisting{classify.py}
 	\vspace{3mm}
-	
+
 
 \newpage
 \section{结论与讨论}
@@ -425,16 +426,16 @@ This part of the laboratory was done for \href{http://www.byui.edu/catalog/2004-
 	\end{bmatrix}
 	+
 	\begin{bmatrix}
-	0 \\ 
+	0 \\
 	24.5 \\
-	0 \\ 
+	0 \\
 	25.4 \\
 	\end{bmatrix}
 	V
 	\]
 
 	\[
-	K  = 
+	K  =
 	\begin{bmatrix}
 	21 & 2.8 & -2.2 & -2.0 \\
 	\end{bmatrix}
@@ -461,7 +462,7 @@ Definitions:
 		\dot{\theta}(t) =  Angular Velocity \\
 		\triangle t = t_{10\%} - t_{90\%} \\
 		90\% = e^{-t_{10\%}/\tau} \\
-		10\% = e^{-t_{90\%}/\tau} \\ 
+		10\% = e^{-t_{90\%}/\tau} \\
 	\end{align*}
 
 The Math:
@@ -502,16 +503,16 @@ This section consists of tables and reductions which were used in this laborator
 			\hline
 			\textbf{PS} & \textbf{D} & \textbf{N} & \textbf{NS} & \textbf{P} \\ \hline
 			\$0.00 & 0 & 0 & \$0.00 & 0 \\
-			 & 0 & 1 & \$0.05 & 0 \\ 
+			 & 0 & 1 & \$0.05 & 0 \\
 			 & 1 & 0 & \$0.10 & 0 \\
 			 & 1 & 1 & -- & -- \\ \hline
-			\$0.05 & 0 & 0 & \$0.05 & 0 \\ 
-			 & 0 & 1 & \$0.10 & 0 \\ 
-			 & 1 & 0 & \$0.15 & 0 \\ 
+			\$0.05 & 0 & 0 & \$0.05 & 0 \\
+			 & 0 & 1 & \$0.10 & 0 \\
+			 & 1 & 0 & \$0.15 & 0 \\
 			 & 1 & 1 & -- & -- \\ \hline
-			\$0.10 & 0 & 0 & \$0.10 & 0 \\ 
-			 & 0 & 1 & \$0.15 & 0 \\ 
-			 & 1 & 0 & \$0.15 & 0 \\ 
+			\$0.10 & 0 & 0 & \$0.10 & 0 \\
+			 & 0 & 1 & \$0.15 & 0 \\
+			 & 1 & 0 & \$0.15 & 0 \\
 			 & 1 & 1 & -- & -- \\ \hline
 			\$0.15 & -- & -- & \$0.15 & 1 \\ \hline
 			\end{tabular}
@@ -524,7 +525,7 @@ This section consists of tables and reductions which were used in this laborator
 		\centering
 		\subfloat[D1 = $Q_{1}$+D+$Q_{0}$N] % Caption
 			{
-				\karnaughmap{4}{D1:}{ {$Q_{1}$} {$Q_{0}$} {D} {N} }{001X011X111X111X}{}  % See the included kvdoc.pdf file for more details 
+				\karnaughmap{4}{D1:}{ {$Q_{1}$} {$Q_{0}$} {D} {N} }{001X011X111X111X}{}  % See the included kvdoc.pdf file for more details
 			} \hspace{10mm} % seperate them a bit
 		\subfloat[D0 = $\Bar{Q_{0}}$N + $Q_{0}\Bar{N}$ + $Q_{1}$N + $Q_{1}$D] % Caption
 			{
@@ -569,8 +570,8 @@ PERSONAL FAVORITE LAB WRITE-UP STRUCTURE
 	% images could go here as well.
 \newpage
 \section{Experiment Data}
-	% Depending on lab, program code would be 
-	% included here without the Estimated and 
+	% Depending on lab, program code would be
+	% included here without the Estimated and
 	% Actual Results.
 	\subsection{Estimated Results}
 		% Calculated. What it should be.
@@ -599,7 +600,7 @@ begin{figure}[H]
 % SUBFIGURES IMAGES
 \begin{figure}[H]
   \centering
-  \subfloat[LED4 Period]{\label{fig:Per4}\includegraphics[width=0.4\textwidth]{period_led4.png}} \\                
+  \subfloat[LED4 Period]{\label{fig:Per4}\includegraphics[width=0.4\textwidth]{period_led4.png}} \\
   \subfloat[LED5 Period]{\label{fig:Per5}\includegraphics[width=0.4\textwidth]{period_led5.png}}
   \subfloat[LED6 Period]{\label{fig:Per6}\includegraphics[width=0.4\textwidth]{period_led6.png}}
   \caption{Period of LED blink rate captured by osciliscope.}
@@ -631,17 +632,17 @@ $ 8 = 2 \times 4 $
 
 % NUMBERED EQUATION
 \begin{equation}
-	
+
 \end{equation}
 
 % ARRAY OF EQUATIONS (The splat supresses the numbering)
 \begin{align*}
-	
+
 \end{align*}
 
 % NUMBERED ARRAY OF EQUATIONS
 \begin{align}
-	
+
 \end{align}
 
 % ACCENTS

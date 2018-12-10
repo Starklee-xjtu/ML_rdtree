@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import LogNorm
 from mpl_toolkits.mplot3d import Axes3D
 
-n_iter = 100
+n_iter = 10000
 def f(x):
     x1 = x[0]
     y1 = x[1]
@@ -29,7 +29,7 @@ def contour(X,Y,Z, arr = None):
     plt.figure(figsize=(15,7))
     plt.contour(X, Y, Z.T,levels=np.logspace(0, 5, 35),norm=LogNorm(),cmap=plt.cm.jet)
     plt.plot(0,0,marker='*')
-    plt.plot(3, 0.5, marker='*')
+    plt.plot(3, 0.5, marker='*',markersize=10)
     if arr is not None:
         arr = np.array(arr)
         for i in range(len(arr) - 1):
@@ -57,7 +57,7 @@ def plot3d(X,Y,Z):
     # 设置图像z轴的显示范围，x、y轴设置方式相同
     ax.set_zlim(-2,200000)
 
-def gd(x_start, step, g):   # gd代表了Gradient Descent
+def gd(x_start, step, g):   # Gradient Descent
     x = np.array(x_start, dtype='float64')
     passing_dot = [x.copy()]
     for i in range(n_iter):
@@ -68,7 +68,7 @@ def gd(x_start, step, g):   # gd代表了Gradient Descent
             break;
     return x, passing_dot
 
-def momentum(x_start, step, g, discount = 0.9):   # gd代表了Gradient Descent
+def momentum(x_start, step, g, discount = 0.9):   # momentum
     x = np.array(x_start, dtype='float64')
     passing_dot = [x.copy()]
     pre_grad = np.zeros_like(x)
@@ -83,7 +83,7 @@ def momentum(x_start, step, g, discount = 0.9):   # gd代表了Gradient Descent
     return x, passing_dot
 
 
-def nesterov(x_start, step, g, discount=0.9):
+def nesterov(x_start, step, g, discount=0.9):   #Nesterov accelerated gradient
     x = np.array(x_start, dtype='float64')
     passing_dot = [x.copy()]
     pre_grad = np.zeros_like(x)
@@ -98,7 +98,7 @@ def nesterov(x_start, step, g, discount=0.9):
             break;
     return x, passing_dot
 
-def adam(x_start, step, g):
+def adam(x_start, step, g):             #Adaptive Moment Estimation
     x = np.array(x_start, dtype='float64')
     beta1=0.9
     beta2=0.999
@@ -124,13 +124,10 @@ def adam(x_start, step, g):
 
 
 
-
-print ('a')
 xi = np.linspace(-4.5,4.5,1000)
 yi = np.linspace(-4.5,4.5,1000)
 X,Y = np.meshgrid(xi, yi)
 Z = np.empty([len(xi),len(yi)], dtype = float)
-print ('a')
 for i in range(len(xi)):
     for j in range(len(yi)):
         x =(xi[i],yi[j])
@@ -140,24 +137,21 @@ for i in range(len(xi)):
 
 
 plot3d(X,Y,Z)
-#
-# contour(X,Y,Z)
 
-res, x_arr = gd([3,4], 0.00002, g)
+contour(X,Y,Z)
+res, x_arr = gd([3,4], 0.00005, g)
+contour(X,Y,Z, x_arr)
+print ('a')
+print (res)
+res, x_arr = momentum([3,4], 0.0000005, g)
 contour(X,Y,Z, x_arr)
 print (res)
-
-res, x_arr = momentum([3,4], 0.000006, g)
-contour(X,Y,Z, x_arr)
-
-print (res)
-res, x_arr = nesterov([3,4], 0.000006, g)
+res, x_arr = nesterov([3,4], 0.0000005, g)
 contour(X,Y,Z, x_arr)
 print (res)
 res, x_arr = adam([3,4], 1, g)
-
 print (res)
 contour(X,Y,Z, x_arr)
 print ('a')
-
+print ('a')
 plt.show()
