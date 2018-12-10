@@ -1,3 +1,7 @@
+# encoding: utf-8
+
+
+import sys
 import librosa
 import librosa.display
 import os
@@ -33,7 +37,6 @@ from sklearn.decomposition import PCA
 np.random.seed(666)
 class WaveDate(object):
     def __init__(self, input_dir='./CWRU'):
-        # 文件读取路径
         self.input_dir = input_dir
 
     def load_data(self, class_name, position_name, load_name):  # 用于读取文件

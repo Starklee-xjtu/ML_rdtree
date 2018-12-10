@@ -3,17 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="224ba930-e04e-4b7a-a73c-418f63fe18c6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise1/Lab_Template/Lab_Template_Example.aux" beforeDir="false" afterPath="$PROJECT_DIR$/exercise1/Lab_Template/Lab_Template_Example.aux" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise1/Lab_Template/Lab_Template_Example.log" beforeDir="false" afterPath="$PROJECT_DIR$/exercise1/Lab_Template/Lab_Template_Example.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise1/Lab_Template/Lab_Template_Example.out" beforeDir="false" afterPath="$PROJECT_DIR$/exercise1/Lab_Template/Lab_Template_Example.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise1/Lab_Template/Lab_Template_Example.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/exercise1/Lab_Template/Lab_Template_Example.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise1/Lab_Template/Lab_Template_Example.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/exercise1/Lab_Template/Lab_Template_Example.synctex.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise1/Lab_Template/Lab_Template_Example.tex" beforeDir="false" afterPath="$PROJECT_DIR$/exercise1/Lab_Template/Lab_Template_Example.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise1/plot_compare_methods.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise1/plot_kernel_pca.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise1/plot_pca_3d.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise1/plot_swissroll.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_read.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_read.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercise1/Lab_Template/mlreport1.log" beforeDir="false" afterPath="$PROJECT_DIR$/exercise1/Lab_Template/mlreport1.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercise1/Lab_Template/mlreport1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/exercise1/Lab_Template/mlreport1.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercise1/Lab_Template/mlreport1.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/exercise1/Lab_Template/mlreport1.synctex.gz" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,8 +37,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="87" column="25" lean-forward="true" selection-end-line="92" />
+            <state relative-caret-position="30">
+              <caret line="76" column="29" selection-start-line="76" selection-start-column="29" selection-end-line="76" selection-end-column="29" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -65,8 +58,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data_read.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2096">
-              <caret line="38" column="56" selection-start-line="38" selection-start-column="56" selection-end-line="38" selection-end-column="56" />
+            <state relative-caret-position="450">
+              <caret line="41" column="56" selection-start-line="41" selection-start-column="56" selection-end-line="41" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -104,9 +97,11 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="42" />
+    <option name="y" value="23" />
+    <option name="width" value="1398" />
+    <option name="height" value="877" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -114,6 +109,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -125,7 +121,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -216,10 +211,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="42" y="23" width="1398" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="7.047216E-4" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.32970226" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -251,7 +246,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/data_read.py</url>
-          <line>282</line>
+          <line>285</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
@@ -300,10 +295,13 @@
     <entry file="file://$USER_HOME$/.PyCharm2018.1/system/python_stubs/1269149634/numpy/core/multiarray.py" />
     <entry file="file://D:/PYscript/Lib/site-packages/sklearn/multioutput.py" />
     <entry file="file://$PROJECT_DIR$/exercise1/plot_kernel_pca.py" />
-    <entry file="file://$PROJECT_DIR$/data_read.py">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2096">
-          <caret line="38" column="56" selection-start-line="38" selection-start-column="56" selection-end-line="38" selection-end-column="56" />
+        <state relative-caret-position="30">
+          <caret line="76" column="29" selection-start-line="76" selection-start-column="29" selection-end-line="76" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -314,13 +312,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/data_read.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="87" column="25" lean-forward="true" selection-end-line="92" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="450">
+          <caret line="41" column="56" selection-start-line="41" selection-start-column="56" selection-end-line="41" selection-end-column="56" />
         </state>
       </provider>
     </entry>
