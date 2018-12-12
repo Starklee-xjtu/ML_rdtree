@@ -133,7 +133,7 @@ professor: \professor \\ \vspace{10pt}
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{research background}
+\section{Research Background}
 %No Text Here
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{research purpose}
@@ -173,18 +173,18 @@ Global minimum is $f(3,0.5)=0$ in search domain $-4.5\leq x,y\leq 4.5$.
 
 
 
-In this paper, Gradient descent, Momentum, Nesterov accelerated gradient, and Adaptive Moment Estimation will be used to solve the global lowest point of Beale Function. The characteristics of various gradient descent methods are known through experiments. The report will consist of the following five main parts:
+In this paper, Gradient descent, Momentum, Nesterov accelerated gradient, and Adaptive Moment Estimation will be used to solve the global minimal point of Beale Function. The characteristics of various gradient descent methods are known through experiments. The report will consist of the following five main parts:
 \begin{itemize}
 	\item Gradient descent method
 	\item Momentum methods
 	\item Nesterov accelerated gradient(NAG) method
   \item Adaptive Moment Estimation(ADAM) methon
-	\item conclusion and Discussion
+	\item Conclusion and Discussion
 \end{itemize}
 \vspace{3mm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Compile environment}
+\subsection{compile environment}
 The Python language is used for experiments. The relevant compilation environment is as follows:
 	\begin{itemize}
 		\item OS：Windows 10
@@ -194,7 +194,7 @@ The Python language is used for experiments. The relevant compilation environmen
 	\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Procedure}
+\subsection{procedure}
 
 	\begin{enumerate}
 		\item programming to visualize Beale function.
@@ -357,8 +357,56 @@ The part of source code of this algorithm is as follows.  \vspace{5mm}
     	\lstinputlisting[language=Python, title=adam.py]{adam.py}
     	\vspace{3mm}
 
+
+\newpage
+\section{Discussion \& Conclusion}
+The objective of the research is to implement four gradient descent method on Beale function to gain insight into the characteristics of each method. The performance of each method can be evaluted by the final convergence point less than 10000 times iteration. And the result is summarized as the following table.\vspace{3mm}
+
+\begin{table}[htbp]
+\begin{center}
+  \begin{tabular}{|ccc|c|}
+    \hline
+    \textbf{method} & \textbf{x} & \textbf{y} & \textbf{distance to global nominal}  \\ \hline
+    \ GD & 2.36625941  & 0.29157283 & 0.667134934 \\\hline
+    \ Momentum & 2.07978324   & 0.40197178 & 0.925423372 \\\hline
+    \ NAG & 2.10316029   & 0.40410201 & 0.901952266 \\\hline
+    \ ADAM & 2.99999789   & 0.49999947 & 2.17555E-06 \\\hline
+    \end{tabular}
+\end{center}
+\caption{Final Convergence Point Table}
+\label{symbolic}
+\end{table}
+
+We can see that the Adam method outperformed the rest methods. And in practice, Adam is also a very good choice with fairly fast speed. To avoid stuck in saddle points, opitmal grident descent method not only can solve this problem, but also have faster convergence rate.\vspace{3mm}
+
+During the experiment, There were two main difficulties I encountered. The first is about tuning the parameter of each algrithm, I used excel to record each parameter and corresbonding convergence rate, and finally get a fairly fast parameter setting. The second difficulty is about visualizing the descent process. Actually the ploting process takes much more time than the solution time. Because the program have to plot each passing dot which is a time consuming process. So I limited the total iteration number. And by doing this, I can plot qucker and get an visualize compare result of convergence speed between each method since the iteraion time is the same.\vspace{3mm}
+
+In summary, a first hand experience on how to implement gradient discent method using python has gained through the experiment. And I have gained more intuitive understanding of how each method works and what difficulties each method intends to tackle.\vspace{8mm}
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Reference}
+
+\begin{enumerate}
+\item Sebastian Ruder (2016). An overview of gradient descent optimisation algorithms.arXiv preprint arXiv:1609.04747.
+\item Zhou Zhihua (2016). Machine Learning. ISBN 978:7-302-42328-7
+\end{enumerate}
+
+\newpage
+\section{Appendix}
+Full version of souce code:
+\lstinputlisting[language=Python, title=gradient.py]{gradient.py}
 \newpage
 \listoffigures
+\newpage
+\listoftables
 
 \end{document} % DONE WITH DOCUMENT!
 \begin{comment}

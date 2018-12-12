@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.12.7)  12 DEC 2018 18:55
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.12.7)  12 DEC 2018 21:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -384,8 +384,8 @@ File: 3dplot.png Graphic file (type bmp)
  [2]
 File: contour.png Graphic file (type bmp)
 <contour.png>
-Missing character: There is no ： in font [lmroman10-regular]:mapping=tex-text;!
  [3]
+Missing character: There is no ： in font [lmroman10-regular]:mapping=tex-text;!
 Missing character: There is no ： in font [lmroman10-regular]:mapping=tex-text;!
 Missing character: There is no （ in font [lmroman10-regular]:mapping=tex-text;!
 Missing character: There is no ） in font [lmroman10-regular]:mapping=tex-text;!
@@ -405,27 +405,144 @@ File: nag.png Graphic file (type bmp)
  (./nag.py [9]) [10]
 File: adam.png Graphic file (type bmp)
 <adam.png>
- [11] (./adam.py) [12] (./mlreport1.lof)
+ [11] (./adam.py) [12] [13] [14] (./gradient.py
+Missing character: There is no 创 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 建 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 图 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 形 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 的 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 两 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 种 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 方 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 式 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 行 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 之 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 间 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 的 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 跨 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 度 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 列 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 之 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 间 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 的 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 跨 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 度 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 设 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 置 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 间 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 隔 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 个 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 数 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no ， in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 默 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 认 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 个 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no ， in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 列 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 的 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 间 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 隔 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 个 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 数 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 不 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 能 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 与 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 上 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 面 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 两 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 个 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 参 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 数 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 同 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 时 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 出 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 现 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 和 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 颜 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 色 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 的 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 最 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 大 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 值 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 和 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 最 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 小 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 值 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 表 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 示 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 把 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 等 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 高 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 线 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 图 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 投 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 射 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 到 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 哪 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 个 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 面 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 表 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 示 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 等 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 高 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 线 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 图 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 投 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 射 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 到 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 指 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 定 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 页 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 面 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 的 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 某 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 个 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 刻 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 度 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 设 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 置 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 图 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 像 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 轴 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 的 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 显 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 示 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 范 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 围 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no ， in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 、 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 轴 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 设 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 置 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 方 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 式 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 相 in font [lmroman8-regular]:mapping=tex-text;!
+Missing character: There is no 同 in font [lmroman8-regular]:mapping=tex-text;!
+ [15] [16]) [17] (./mlreport1.lof)
 \tf@lof=\write5
 \openout5 = `mlreport1.lof'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 363.
- [13]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 363.
+ [18] (./mlreport1.lot)
+\tf@lot=\write6
+\openout6 = `mlreport1.lot'.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 411.
+ [19]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 411.
  (./mlreport1.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 363.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 363.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 411.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 411.
 Package rerunfilecheck Info: File `mlreport1.out' has not changed.
-(rerunfilecheck)             Checksum: 028FF7CEFBC89111F955D489E3208527.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 363.
+(rerunfilecheck)             Checksum: 9781EB9D6D32AFBCDDF283F5358D0CFE.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 411.
  ) 
 Here is how much of TeX's memory you used:
- 12112 strings out of 492956
- 171963 string characters out of 6133502
- 552001 words of memory out of 5000000
- 16003 multiletter control sequences out of 15000+600000
+ 12183 strings out of 492956
+ 172688 string characters out of 6133502
+ 734061 words of memory out of 5000000
+ 16068 multiletter control sequences out of 15000+600000
  8887 words of font info for 46 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  44i,9n,45p,803b,1769s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on mlreport1.xdv (14 pages, 203372 bytes).
+Output written on mlreport1.xdv (20 pages, 382932 bytes).

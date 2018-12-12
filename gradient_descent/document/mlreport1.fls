@@ -150,8 +150,14 @@ INPUT adam.png
 INPUT adam.py
 INPUT adam.py
 INPUT adam.py
+INPUT gradient.py
+INPUT gradient.py
+INPUT gradient.py
 INPUT mlreport1.lof
 INPUT mlreport1.lof
 OUTPUT mlreport1.lof
+INPUT mlreport1.lot
+INPUT mlreport1.lot
+OUTPUT mlreport1.lot
 INPUT mlreport1.aux
 INPUT ./mlreport1.out

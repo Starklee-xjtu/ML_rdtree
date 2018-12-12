@@ -12,5 +12,3 @@ def nesterov(x_start, step, g, discount=0.9):   #Nesterov accelerated gradient
         if abs(sum(grad)) < 1e-6:
             break;
     return x, passing_dot
-
-i

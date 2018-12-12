@@ -2,53 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a7bb838-55a8-4df0-bd14-9f06c7095fb8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lipnum.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Fault_class/report/Latex Cheat Sheet.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Fault_class/report/mlreport1.fdb_latexmk" beforeDir="false" afterPath="$PROJECT_DIR$/../Fault_class/report/mlreport1.fdb_latexmk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Fault_class/report/mlreport1.fls" beforeDir="false" afterPath="$PROJECT_DIR$/../Fault_class/report/mlreport1.fls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Fault_class/report/mlreport1.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Fault_class/report/mlreport1.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Fault_class/report/mlreport1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../Fault_class/report/mlreport1.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Fault_class/report/mlreport1.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/../Fault_class/report/mlreport1.synctex.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradient_descent.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradient_descent.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/Kpca.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/LLE.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/Lab_Template_Example.aux" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/Lab_Template_Example.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/Lab_Template_Example.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/Lab_Template_Example.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/Lab_Template_Example.synctex.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/Latex Cheat Sheet.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/classify.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/code.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/graph.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/kvdoc.ps" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/kvdoc.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/kvmacros.tex" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/document/mlreport1.aux" beforeDir="false" afterPath="$PROJECT_DIR$/document/mlreport1.aux" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/document/mlreport1.fdb_latexmk" beforeDir="false" afterPath="$PROJECT_DIR$/document/mlreport1.fdb_latexmk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/document/mlreport1.fls" beforeDir="false" afterPath="$PROJECT_DIR$/document/mlreport1.fls" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/document/mlreport1.log" beforeDir="false" afterPath="$PROJECT_DIR$/document/mlreport1.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/document/mlreport1.lot" beforeDir="false" afterPath="$PROJECT_DIR$/document/mlreport1.lot" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/document/mlreport1.out" beforeDir="false" afterPath="$PROJECT_DIR$/document/mlreport1.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/document/mlreport1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/document/mlreport1.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/document/mlreport1.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/document/mlreport1.synctex.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/document/mlreport1.tex" beforeDir="false" afterPath="$PROJECT_DIR$/document/mlreport1.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/document/mlreport1.toc" beforeDir="false" afterPath="$PROJECT_DIR$/document/mlreport1.toc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/document/mlreport1.xdv" beforeDir="false" afterPath="$PROJECT_DIR$/document/mlreport1.xdv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/pca.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/period_led4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/period_led4_logic.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/period_led5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/period_led5_logic.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/period_led6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/period_led6_logic.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/plot_compare_methods.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/plot_kernel_pca.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/plot_pca_3d.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/plot_swissroll.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/summary.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/timesig.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/whitnoise.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/moment.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/document/nag.py" beforeDir="false" afterPath="$PROJECT_DIR$/document/nag.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradient.py" beforeDir="false" afterPath="$PROJECT_DIR$/gradient.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,8 +31,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gradient.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="98" column="25" lean-forward="true" selection-start-line="98" selection-start-column="25" selection-end-line="98" selection-end-column="25" />
+            <state relative-caret-position="70">
+              <caret line="131" column="28" selection-start-line="131" selection-start-column="28" selection-end-line="131" selection-end-column="28" />
               <folding>
                 <element signature="e#25#43#0" expanded="true" />
               </folding>
@@ -76,7 +43,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lipnum.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
+            <state relative-caret-position="270">
               <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -116,8 +83,8 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="882" />
-    <option name="y" value="23" />
+    <option name="x" value="103" />
+    <option name="y" value="66" />
     <option name="width" value="1132" />
     <option name="height" value="877" />
   </component>
@@ -158,7 +125,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.lipnum">
+  <component name="RunManager" selected="Python.moment">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="gradient_descent" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -210,13 +177,13 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="D:\PYscript\python.exe" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/moment.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gradient.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -225,10 +192,14 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.lipnum" />
+      <item itemvalue="Python.moment" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.lipnum" />
         <item itemvalue="Python.moment" />
+        <item itemvalue="Python.lipnum" />
       </list>
     </recent_temporary>
   </component>
@@ -246,7 +217,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="882" y="23" width="1132" height="877" extended-state="0" />
+    <frame x="103" y="66" width="1132" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="9.0009003E-4" />
@@ -254,14 +225,14 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49774978" visible="true" weight="0.2611465" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4968497" weight="0.25987262" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.36930692" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50225025" side_tool="true" visible="true" weight="0.2611465" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50315034" side_tool="true" visible="true" weight="0.25987262" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" order="12" />
@@ -296,10 +267,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../ML_rdtree/Fault_class/data_read.py" />
-    <entry file="file://$PROJECT_DIR$/moment.py">
+    <entry file="file://$PROJECT_DIR$/moment.py" />
+    <entry file="file://$PROJECT_DIR$/gradient.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2145">
-          <caret line="147" column="11" selection-start-line="147" selection-start-column="11" selection-end-line="147" selection-end-column="11" />
+        <state relative-caret-position="70">
+          <caret line="131" column="28" selection-start-line="131" selection-start-column="28" selection-end-line="131" selection-end-column="28" />
           <folding>
             <element signature="e#25#43#0" expanded="true" />
           </folding>
@@ -308,20 +280,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lipnum.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
+        <state relative-caret-position="270">
           <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gradient.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="98" column="25" lean-forward="true" selection-start-line="98" selection-start-column="25" selection-end-line="98" selection-end-column="25" />
-          <folding>
-            <element signature="e#25#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
