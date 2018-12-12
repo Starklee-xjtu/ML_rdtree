@@ -135,7 +135,6 @@ for i in range(len(xi)):
 
 
 
-
 plot3d(X,Y,Z)
 
 contour(X,Y,Z)

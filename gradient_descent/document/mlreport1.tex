@@ -27,9 +27,10 @@
 % (c) 2009 Derek R. Hildreth <derek@derekhildreth.com> http://www.derekhildreth.com
 % This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/1.0/ or send a letter to Creative Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[aps,letterpaper,10pt]{article}
 
 \input kvmacros % For Karnaugh Maps (K-Maps)
-\documentclass[UTF8]{ctexart}
+
 \usepackage{graphicx} % For images
 \usepackage{float}    % For tables and other floats
 \usepackage{verbatim} % For comments and other
@@ -37,8 +38,9 @@
 \usepackage{amssymb}  % For more math
 \usepackage{fullpage} % Set margins and place page numbers at bottom center
 \usepackage{listings} % For source code
+\usepackage{xcolor}   % Source code colour
 \usepackage{subfig}   % For subfigures
-\usepackage[usenames,dvipsnames]{color} % For colors and names
+
 \usepackage{hyperref}           % For hyperlinks and indexing the PDF
 \hypersetup{ % play with the different link colors here
     colorlinks,
@@ -49,25 +51,36 @@
 }
 
 \definecolor{mygrey}{gray}{.96} % Light Grey
-\lstset{
-	language=[ISO]C++,              % choose the language of the code ("language=Verilog" is popular as well)
-   tabsize=3,							  % sets the size of the tabs in spaces (1 Tab is replaced with 3 spaces)
-	basicstyle=\tiny,               % the size of the fonts that are used for the code
-	numbers=left,                   % where to put the line-numbers
-	numberstyle=\tiny,              % the size of the fonts that are used for the line-numbers
-	stepnumber=2,                   % the step between two line-numbers. If it's 1 each line will be numbered
-	numbersep=5pt,                  % how far the line-numbers are from the code
-	backgroundcolor=\color{mygrey}, % choose the background color. You must add \usepackage{color}
-	%showspaces=false,              % show spaces adding particular underscores
-	%showstringspaces=false,        % underline spaces within strings
-	%showtabs=false,                % show tabs within strings adding particular underscores
-	frame=single,	                 % adds a frame around the code
-	tabsize=3,	                    % sets default tabsize to 2 spaces
-	captionpos=b,                   % sets the caption-position to bottom
-	breaklines=true,                % sets automatic line breaking
-	breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
-	%escapeinside={\%*}{*)},        % if you want to add a comment within your code
-	commentstyle=\color{BrickRed}   % sets the comment style
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{mygrey},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=bl,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,                    % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  %language=Python,                 % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{orange},     % string literal style
+  tabsize=2,                       % sets default tabsize to 2 spaces
+  %title=myPython.py                   % show the filename of files included with \lstinputlisting; also try caption instead of title
 }
 
 % Make units a little nicer looking and faster to type
@@ -86,9 +99,9 @@
 % lab write-up.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\labtitle}{gradient descent method}
-\newcommand{\authorname}{李梓铉}
-\newcommand{\professor}{孙建永教授}
+\newcommand{\labtitle}{gradient descent method report}
+\newcommand{\authorname}{Zixuan Li}
+\newcommand{\professor}{Jianyong Sun}
 \newcommand{\classno}{3118103163}
 % END TITLE PAGE CONTENT %%%%%%%%%%%%%%%%%%%%
 
@@ -103,164 +116,252 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{titlepage}
 \begin{center}
-{\LARGE \textsc{optimization in big data research report} \\ \vspace{4pt}}
+{\LARGE \textsc{optimization in big data research} \\ \vspace{4pt}}
 {\Large \textsc{\labtitle} \\ \vspace{4pt}}
 \rule[13pt]{\textwidth}{1pt} \\ \vspace{150pt}
 {\large  \authorname \\ \vspace{10pt}
-学号 \classno\\ \vspace{10pt}
-指导老师: \professor \\ \vspace{10pt}
+student number \classno\\ \vspace{10pt}
+professor: \professor \\ \vspace{10pt}
 \today}
 \end{center}
 \end{titlepage}
 % END TITLE PAGE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\newpage
+\tableofcontents
 
-
-
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{实验背景}
+\section{research background}
 %No Text Here
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{实验目的}
+\subsection{research purpose}
 \begin{comment}
 This is a lab template which has a ton of different things which are useful in writing lab write-ups in the Computer Eningeering field.  This is demonstrating the comment block. Don't be overwhelmed, it may seem like a lot to take in at a time, but it's worth spending the time learning it.
 \end{comment}
-对于凸优化问题，需要计算损失函数L(θ)的极小值（最小值）。由于梯度是函数上升最快的方向，因而梯度下降算法在更新参数θ的梯度时，均是减去参数的梯度。下面的η为学习率。
+
+The purpose of this experiment is to optimize Beale function by using gradient descent, momentum, Nesterov accelerated gradient(NAG), and Adaptive Moment Estimation (Adam) algorithms.\vspace{3mm}
+
+According to the definition by Khon nen, neural network is an extensive parallel interconnected network composed of simple units with adaptability, and its organization can simulate the interaction of biological nervous system with real world objects [ Koho nen, 1988 ]. In machine learning, the neural network means neural network leaning which is an interdisciplinanry field of study.\vspace{3mm}
+
+The most basic component of the neural network is the neuron model. In the neural network, each neuron is connected to other neurons, and when it is stimulated, it will send signal to the other connected neurons. And the connection have different weight, thus has different impact on the other neurons. The total input value received by the neuron will be compared with the threshold value of the neuron and then processed by the activation function to produce the output of the neuron.
+Training neural network is to give a training data set, and continuously adjust the transmission weight and activation function in the neural network to reduce the gap between the predicted value and the data set. If the error of the neural network in the training set is expressed by $\epsilon$ and it is obviously a function of the connection weight $\omega$ and the threshold value $\theta$ . At this time, the training process of the neural network can be regarded as a parameter optimization process. That is, in the parameter space, finding a set of optimal parameters makes $\epsilon$ minimum.\vspace{3mm}
+
+
+Gradient descent is the most widely used parameter optimization method, in which we start from some initial solutions. In each iteration, we first calculate the gradient of the error function $\epsilon(x)$ at the current point and then determine the search direction according to the gradient. The learning rate $\eta$ determines the step of each iteration. Many deep learning project use various algorithms to optimize gradient descent, but in these large models, the optimization algorithm is often a black box model. Therefore, the purpose of this experiment is to optimize a test function by using several commonly used gradient descent algorithms, and to gain a more intuitive understanding of several gradient descent algorithms by writing code and visualizing the descent process.
 \vspace{3mm}
 
-降维的方法主要分为两类：\vspace{3mm}
+The test function used in this research is Beale function:\vspace{3mm}
+\begin{align*}
+  f(x,y)=\left(1.5-x+xy\right)^{2}+\left(2.25-x+xy^{2}\right)^{2}
+\end{align*}
 
-第一类也是降维最简单的方法就是基于线性变换的线性降维方法，多维缩放（MDS），主成分分析（PCA） 算法均属于此类降维方法。线性降维方法是高维到低维空间的线性映射，但对于现实任务中的很多数据，需要使用非线性映射才能找到适当的低维嵌入。\vspace{3mm}
+Global minimum is $f(3,0.5)=0$ in search domain $-4.5\leq x,y\leq 4.5$.
 
-第二类方法就是非线性方法，非线性方法中的第一种是核化线性降维，如核主成分分析（KPCA），使用核函数，将高维特征空间中得数据投影到一个超平面上实现降维。第二种是流形学习（manifold learning），这是一种借鉴拓扑流形概念的降维方法。低维流形嵌入到高维空间的分布虽然很复杂，但局部仍然具有欧式空间的性质，因此可以在局部建议降维映射关系，然后在推广至全局。著名的流形学习方法有等度量映射（Isometric mapping）Isomapping，局部性嵌入（local linear embedding）LLE等。\vspace{3mm}
+\begin{figure}[H]
+  \centering
+  \label{fig:Beale1}\includegraphics[width=0.5\textwidth]{3dplot.png}\
+  \caption{3d plot of Beale function }
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \label{fig:Beale2}\includegraphics[width=0.8\textwidth]{contour.png}\
+  \caption{contour plot of Beale function and global minimum}
+\end{figure}
 
 
-在本文中，将使用PCA，Kpca，Isomap，LLE四种方法对随机生成的高维数据进行降维。通过实验了解各类降维方法的特点，在理解原理的基础上对各类方法有更直观的认识，然后再对一个现实工程问题进行方法的应用。报告将包含以下5个主要部分:
+
+In this paper, Gradient descent, Momentum, Nesterov accelerated gradient, and Adaptive Moment Estimation will be used to solve the global lowest point of Beale Function. The characteristics of various gradient descent methods are known through experiments. The report will consist of the following five main parts:
 \begin{itemize}
-	\item 主成分分析方法（PCA）
-	\item 核主成分分析方法（KPCA）
-	\item 局部性嵌入（LLE）
-	\item 工程应用
-	\item 结论与讨论
+	\item Gradient descent method
+	\item Momentum methods
+	\item Nesterov accelerated gradient(NAG) method
+  \item Adaptive Moment Estimation(ADAM) methon
+	\item conclusion and Discussion
 \end{itemize}
 \vspace{3mm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{编译环境}
-使用python语言进行实验，相关的编译环境如下:
+\subsection{Compile environment}
+The Python language is used for experiments. The relevant compilation environment is as follows:
 	\begin{itemize}
-		\item 操作系统Windows 10
-		\item python3.6编译器
-		\item scikit-learn 0.20.1 （机器学习python库）
-		\item numpy （python数组处理库）
-		\item matplotlib（python可视化库）
+		\item OS：Windows 10
+		\item Complier：python3.6
+		\item numpy（scientific computing package）
+		\item matplotlib（python visualize package）
 	\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{Procedure}
+\subsection{Procedure}
 
-%	\begin{enumerate}
-%		\item Start the ISE Navigator. See the ISE 8.2i Quick Start Tutorial.
-%		\item Create a new project.
-%		\item Import copies of the Verilog modules AND\_OR, MY\_AND2, and MY\_OR2 to the new project just created.
-%		\item Create a Test Bench (called Test Fixture in Verilog).
-%		\item Create the actual input stimulus.
-%		\item Run the simulation, examine the waveforms, and verify functioniality.
-%	\end{enumerate}
+	\begin{enumerate}
+		\item programming to visualize Beale function.
+		\item programming the four algorithm.
+		\item Adjust parameters in each algorithms, such as learning rate, to achieve fastest convergence rate.
+		\item Run the program, examine the route of convergence to gain insight into each algorithm.
+		\item Output related graphs and data
+		\item Finish the experiment report.
+	\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \newpage
-\section{PCA}
-\subsection{方法介绍}
-主成分分析（Principal Component Analysis）是最常用的一种降维方法。PCA通过用一个超平面对正交空间中的所有样本点进行近似表达。这个超平面要满足两点：1. 重构性：样本点到这个超平面的距离都足够近。 2.最大可分性：样本点在这个超平面上的投影能尽可能分开。\vspace{3mm}
+\section{Gradient Descent Method}
+\subsection{algorithm introduction}
+The gradient descent method is very easy to understand. The gradient direction indicates the direction where the function grows fastest, so the opposite direction is the direction where the function decreases fastest. For the problem of machine learning model optimization, when we need to solve the minimum value, we can find the optimal value by moving in the direction of gradient descent.\vspace{3mm}
 
 
-算法的主要过程可以总结如下：
-
-
+The main process of GD algorithm can be summarized as follows:
 
 \begin{enumerate}
-	\item 输入：样本集D，期望的低维空间维数n。
-	\item 对所有样本进行中心化。
-	\item 计算样本的协方差矩阵。
-	\item 对协方差矩阵做特征值分解。
-	\item 排序特征值取最大的n个特征值所对应的特征向量。
-	\item 输出:特征向量对应的投影矩阵
+	\item input: Function to be solved$f(x,y)$, derivative of funcition to be solved${f(x,y)}'$, start point$P(x_0,y_0)$, the step size along the gradient descent direction $step$
+	\item for $(abs(grad)> 1e-6)$ do
+	\item compute the derivative of current point $P(x,y)$
+  \item $gradient = -{f(P_t)}'$
+	\item updated the next point as $P_{t+1}=P_t - step*gradient$
+  \item end
+	\item output: the convergence point $P_{convergence}$
 \end{enumerate}
 
 
-
-降维后的低维空间的维数由使用者决定，可以通过选不同的维数通过交叉验证得到较好的维数n，显然在PCA过程中，较小的特征值对应的特征向量对应的信息被舍弃了，这是降维的必要结果，因为较小的特征值对应的信息往往是无用的噪声信息，舍弃后可以使样本采样密度增大，一定程度上起到去噪的效果。
-
-\subsection{实验介绍}
-仿照sci-kit示例程序，本实验使用numpy生成三个随机数组，将数组通过线性变化，变换为三维空间中的点云，点云分布有显著的接近一个平面（x-y-z=0）上分布的特征。然后程序通过调用sci-kit的PCA程序，设置低维空间维数为3，得到一个超平面(近似平面x-y-z=0)来近似所有的样本点，并进行了可视化。
-
-可视化结果如下。
-
-	\begin{figure}[H]
-	  \centering
-	  \label{fig:Per6A}\includegraphics[width=0.4\textwidth]{pca.png}\
-	  \caption{PCA点云近似可视化结果}
-	  \label{fig:oscil}
-	\end{figure}
-
-\subsection{源代码}
-实验使用的源代码如下.  \vspace{5mm}
-	\lstinputlisting{plot_pca_3d.py}
-	\vspace{3mm}
-
-
-
-
-
-
-\newpage
-\section{KPCA}
-\subsection{方法介绍}
-核主成分分析（Principal Component Analysis）是核化线性降维的一种方法。核函数是一种数学技巧变换技巧，可以将样本映射到一个高维特征空间去。KPCA使用核函数可以对样本进行非线性的映射再做降维处理。KPCA的优势在于，映射后的数据集在映射后通常可以保留聚类特征，有时对于扭曲的流形数据集也有很好的效果。KPCA常用的核函数有Gaussian Radial Basis Function (RBF)核函数。Gaussian RBF Function如下：
-
+\subsection{result}
+The start point as the exercise requirement is set at $P(3,4)$ . As for the step size , If it is less than $1 / L$. Then it can guarantee convergence (L is the Lipschitz constant of the gradient of the objective function).
 \begin{align*}
-		\phi \gamma(x,\iota) = exp(-\gamma \lVert x-l \rVert ^2)\\
+  |f(x_1)-f(x_2)| = |{f(\xi)}'(x_1-x_2)| \leq L|x_1-x_2|
 \end{align*}
 
-通过将数据集的每一个样本用核函数映射到一个高维特征空间去。相比原来的样本，新样本会有很多新的维度，同时也因此提高了数据集线性可分的概率。然后再在特征空间中实施PCA即可。核化的弊端在于训练集如果很大的话，那么核化后的数据的feature将非常多，并且为了获得投影，KPCA要对所有样本求和，计算开销较大。
-\vspace{3mm}
-
-算法的主要过程可以总结如下：
-
-
-
-\begin{enumerate}
-	\item 输入：样本集D，期望的低维空间维数n，核函数$\phi$
-	\item 得到样本在高维特征空间的像。
-	\item 实施PCA
-	\item 输出:特征向量对应的投影矩阵
-\end{enumerate}
-
-
-
-
-\subsection{实验介绍}
-仿照sci-kit示例程序，本实验使用scikit的datasets库方法，生成两组sample，在x1，x2空间上分布近似为两个同心圆。先调用了PCA，对样本进行了处理并输出了最大特征值对应的两个特征向量下的样本空间。然后调用scikit的K\_pca方法，使用rbf\_kernel，对样本进行了处理。并输出了最大的两个特征值对应的特征向量描述的样本空间。然后输出了在原x1，x2空间中，经过KPCA处理的样本。
-可视化结果如下。
+I computed the numerical solution of Beale function's Lipschitz constant. And the result is $L=248533.18$. so as long as $dp \leq4\times10^{-6} $ the algorithm will convergence. After weighing convergence and convergence speed, I finally choose $step = 5\times10^{-6} $.
 
 	\begin{figure}[H]
 	  \centering
-	  \label{fig:Per3A}\includegraphics[width=0.8\textwidth]{Kpca.png}\
-	  \caption{KPCA可视化结果}
-	  \label{fig:oscil}
+	  \label{fig:gd}\includegraphics[width=0.8\textwidth]{gd.png}\
+	  \caption{gradient descent process}
 	\end{figure}
 
-可以看出从图Projection by KPCA看出，经过KPCA处理，新的样本变的线性可分了，并且根据Original space after inverse transform可以看出，KPCA很好的保留了样本的原始聚类特征。而从Projection by PCA可以看出，线性降维后的样本和原来的样本很接近，并没有提取出样本中的聚类特征。
-
-\subsection{源代码}
-实验使用的源代码如下.  \vspace{5mm}
-	\lstinputlisting{plot_kernel_pca.py}
+\subsection{source code}
+The part of source code of this algorithm is as follows.  \vspace{5mm}
+	\lstinputlisting[language=Python, title=GD.py]{GD.py}
 	\vspace{3mm}
 
+
+
+\newpage
+\section{Momentum Method}
+\subsection{algorithm introduction}
+As its name suggests, momentum acts as a constant catalyst for the previous optimization in the process of optimization. The influence of an already declining direction will not disappear immediately, but will decay in a certain form.\vspace{3mm}
+
+The main process of Momentum algorithm can be summarized as follows:
+
+\begin{enumerate}
+	\item input: Function to be solved$f(x,y)$, derivative of funcition to be solved${f(x,y)}'$, start point$P(x_0,y_0)$, the step size along the gradient descent direction $step$, momentum term $\gamma$
+	\item for $(abs(grad)> 1e-6)$ do
+	\item compute the derivative of current point $x$
+  \item compute update vector $v_t=\gamma v_{t-1} + step{f(x,y)}'$
+	\item updated the next point as $P_{t+1}=P_t - v_t$
+  \item end
+	\item output: the convergence point $P_{convergence}$
+\end{enumerate}
+The momentum term $\gamma$ is usually set to 0.9.
+
+\subsection{result}
+The start point as the exercise requirement is set at $P(3,4)$ . As for the step size,After weighing convergence and convergence speed, I finally choose $step = 5\times10^{-7}$ .To restrict the iteraion time, the program is set to stop when it iteraes 10000 times.
+
+
+	\begin{figure}[H]
+	  \centering
+	  \label{fig:momentum}\includegraphics[width=0.8\textwidth]{momentum.png}\
+	  \caption{momentum descent process}
+	\end{figure}
+
+\subsection{source code}
+The part of source code of this algorithm is as follows.  \vspace{5mm}
+	\lstinputlisting[language=Python, title=momentum.py]{momentum.py}
+	\vspace{3mm}
+
+
+\newpage
+\section{Nesterov accerlerated gradient Method}
+\subsection{algorithm introduction}
+  The momentum method can be thought as a ball rolling down a hill with momentum. Then the NAG method is smarter ball which can slowing down before climbing up another hill.\vspace{3mm}
+
+  The main process of Momentum algorithm can be summarized as follows:
+\begin{enumerate}
+	\item input: Function to be solved$f(x,y)$, derivative of funcition to be solved${f(x,y)}'$, start point$P(x_0,x_0)$, the step size along the gradient descent direction $step$, momentum term $\gamma$
+	\item for $(abs(grad)> 1e-6)$ do
+	\item compute the derivative of current point ${f(P_t)}'$
+  \item compute update vector $v_t=\gamma v_{t-1} + step{P_t-\gamma v_t-1}'$
+	\item updated the next point as $P_{t+1}=P_t - v_t$
+  \item end
+	\item output: the convergence point $P_{convergence}$
+\end{enumerate}
+
+The difference between Nag and Momentum is that,  NAG use the momentum of present point to get a proximation of the next gradient rather than using the present gradient directly as Momentum method.
+
+
+\subsection{result}
+The start point as the exercise requirement is set at $P(3,4)$ . The momentum term $\gamma$ is also usually set to 0.9. The step size is same as momentum method $step = 5\times10^{-7}$. To restrict the iteraion time, the program is set to stop when it ierates 10000 times.
+
+  \begin{figure}[H]
+    \centering
+    \label{fig:nag}\includegraphics[width=0.8\textwidth]{nag.png}\
+    \caption{NAG descent process}
+  \end{figure}
+
+\subsection{source code}
+The part of source code of this algorithm is as follows.  \vspace{5mm}
+  \lstinputlisting[language=Python, title=nag.py]{nag.py}
+	\vspace{3mm}
+
+
+\newpage
+\section{Adaptive Moment Estimation Method}
+  \subsection{algorithm introduction}
+  Adaptive Moment Estimation (Adam) is a method that computes adaptive learning rates for each parameter. Adaptive combines the advantages of RMSprop and Momentum method. It stores the an exponentially decaying average of past squared gradients $v_t$ and exponentially decaying average of past gradients $m_t$. \vspace{3mm}
+
+  The main process of Momentum algorithm can be summarized as follows:
+
+  \begin{enumerate}
+  	\item input: Function to be solved$f(x,y)$, derivative of funcition to be solved${f(x,y)}'$, start point$P(3,4)$, the step size along the gradient descent direction $step$, super-parameter$\beta_1,\beta_2$ .
+  	\item for $(abs(grad)> 1e-6)$ do
+  	\item compute the gradient of current point $g_t=-{f(P_t)}'$
+    \item compute the decaying averages of past gradient $m_t=\beta1 m_{t-1} +(1-\beta_1)g_t$
+    \item compute the decaying averages of past squared gradient $v_t=\beta_2 v_{t-1} +(1-\beta_2)g_t^{2}$
+    \item computing bias-corrected first moment estimates $\hat{m_t}=\frac{m_t}{1-\beta_1^(t)}$
+    \item computing bias-corrected second moment estimates $\hat{v_t}=\frac{m_t}{1-\beta_2^(t)}$
+    \item compute update vector $v_t=\frac{step}{\sqrt{\hat{v_t}+\epsilon}\hat{m_t}} $
+    \item updated the next point as $P_{t+1}=P_t - v_t$
+    \item end
+  	\item output: the convergence point $P_{convergence}$
+  \end{enumerate}
+
+
+
+
+  \subsection{result}
+  The default values proposed by the authors of this methd is $\beta_1=0.9, \beta_2=0.999, \epsilon=10^{-8}$
+  And The start point as the exercise requirement is set at $P(3,4)$ . The step size is set to 1 by testing to have a relatively fast convergence rate. To restrict the iteraion time, the program is set to stop when it ierates 10000 times.
+
+    \begin{figure}[H]
+    	 \centering
+    	 \label{fig:adam}\includegraphics[width=0.8\textwidth]{adam.png}\
+    	 \caption{ADAM descent process}
+    \end{figure}
+  We can see that the Adam algorithm behaves like a heavy ball with friction because it stores an exponentially decaying average of past gradients.
+
+
+    \subsection{source code}
+    The part of source code of this algorithm is as follows.  \vspace{5mm}
+    	\lstinputlisting[language=Python, title=adam.py]{adam.py}
+    	\vspace{3mm}
+
+\newpage
+\listoffigures
+
+\end{document} % DONE WITH DOCUMENT!
+\begin{comment}
 
 
 
