@@ -185,7 +185,7 @@ In this paper, Gradient descent, Momentum, Nesterov accelerated gradient, and Ad
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{compile environment}
-The Python language is used for experiments. The relevant compilation environment is as follows:
+Python is used for experiments. The relevant compilation environment is as follows:
 	\begin{itemize}
 		\item OS：Windows 10
 		\item Complier：python3.6
@@ -228,12 +228,12 @@ The main process of GD algorithm can be summarized as follows:
 
 
 \subsection{result}
-The start point as the exercise requirement is set at $P(3,4)$ . As for the step size , If it is less than $1 / L$. Then it can guarantee convergence (L is the Lipschitz constant of the gradient of the objective function).
+The start point as the exercise requirement is set at $P(3,4)$ . As for the step size , If it is less than $1 / L$. Then it can guarantee convergence (L is the Lipschitz constant of the gradient of the objective function). The definition of Lipschitz can be expressed as followed.
 \begin{align*}
   |f(x_1)-f(x_2)| = |{f(\xi)}'(x_1-x_2)| \leq L|x_1-x_2|
 \end{align*}
 
-I computed the numerical solution of Beale function's Lipschitz constant. And the result is $L=248533.18$. so as long as $dp \leq4\times10^{-6} $ the algorithm will convergence. After weighing convergence and convergence speed, I finally choose $step = 5\times10^{-6} $.
+I computed the numerical solution of Beale function's Lipschitz constant. And the result is $L=248533.18$. so as long as $dp \leq4\times10^{-6} $ the algorithm will convergence. One way to adaptive choose the step size is to use backtracking line search. However, since this problem is faily easy to compute, I decided to use fixed step size. After weighing convergence and convergence speed, I finally choose $step = 5\times10^{-6} $. To restrict the iteraion time, the program is set to stop when it iteraes 10000 times.
 
 	\begin{figure}[H]
 	  \centering
@@ -242,7 +242,7 @@ I computed the numerical solution of Beale function's Lipschitz constant. And th
 	\end{figure}
 
 \subsection{source code}
-The part of source code of this algorithm is as follows.  \vspace{5mm}
+The source code of this algorithm is as follows.  \vspace{5mm}
 	\lstinputlisting[language=Python, title=GD.py]{GD.py}
 	\vspace{3mm}
 
@@ -251,7 +251,7 @@ The part of source code of this algorithm is as follows.  \vspace{5mm}
 \newpage
 \section{Momentum Method}
 \subsection{algorithm introduction}
-As its name suggests, momentum acts as a constant catalyst for the previous optimization in the process of optimization. The influence of an already declining direction will not disappear immediately, but will decay in a certain form.\vspace{3mm}
+As its name suggests, momentum acts like a constant catalyst for the previous optimization in the process of optimization. The influence of an already declining direction will not disappear immediately, but will decay in a certain form.\vspace{3mm}
 
 The main process of Momentum algorithm can be summarized as follows:
 
@@ -264,10 +264,10 @@ The main process of Momentum algorithm can be summarized as follows:
   \item end
 	\item output: the convergence point $P_{convergence}$
 \end{enumerate}
-The momentum term $\gamma$ is usually set to 0.9.
+
 
 \subsection{result}
-The start point as the exercise requirement is set at $P(3,4)$ . As for the step size,After weighing convergence and convergence speed, I finally choose $step = 5\times10^{-7}$ .To restrict the iteraion time, the program is set to stop when it iteraes 10000 times.
+The start point as the exercise requirement is set at $P(3,4)$ . The momentum term $\gamma$ is usually set to 0.9. As for the step size,After weighing convergence and convergence speed, I finally choose $step = 5\times10^{-7}$ . To restrict the iteraion time, the program is set to stop when it iteraes 10000 times.
 
 
 	\begin{figure}[H]
@@ -277,7 +277,7 @@ The start point as the exercise requirement is set at $P(3,4)$ . As for the step
 	\end{figure}
 
 \subsection{source code}
-The part of source code of this algorithm is as follows.  \vspace{5mm}
+The source code of this algorithm is as follows.  \vspace{5mm}
 	\lstinputlisting[language=Python, title=momentum.py]{momentum.py}
 	\vspace{3mm}
 
@@ -285,7 +285,7 @@ The part of source code of this algorithm is as follows.  \vspace{5mm}
 \newpage
 \section{Nesterov accerlerated gradient Method}
 \subsection{algorithm introduction}
-  The momentum method can be thought as a ball rolling down a hill with momentum. Then the NAG method is smarter ball which can slowing down before climbing up another hill.\vspace{3mm}
+  If the momentum method can be thought as a ball rolling down a hill with momentum. Then the NAG method is a smarter ball which can slowing down before climbing up another hill.\vspace{3mm}
 
   The main process of Momentum algorithm can be summarized as follows:
 \begin{enumerate}
@@ -311,7 +311,7 @@ The start point as the exercise requirement is set at $P(3,4)$ . The momentum te
   \end{figure}
 
 \subsection{source code}
-The part of source code of this algorithm is as follows.  \vspace{5mm}
+The source code of this algorithm is as follows.  \vspace{5mm}
   \lstinputlisting[language=Python, title=nag.py]{nag.py}
 	\vspace{3mm}
 
@@ -360,7 +360,7 @@ The part of source code of this algorithm is as follows.  \vspace{5mm}
 
 \newpage
 \section{Discussion \& Conclusion}
-The objective of the research is to implement four gradient descent method on Beale function to gain insight into the characteristics of each method. The performance of each method can be evaluted by the final convergence point less than 10000 times iteration. And the result is summarized as the following table.\vspace{3mm}
+The objective of this research is to implement four gradient descent method on Beale function to gain insight into the characteristics of each method. The performance of each method can be evaluted by the final convergence point's distance to global nominal point. And the result is summarized as the following table.\vspace{3mm}
 
 \begin{table}[htbp]
 \begin{center}
@@ -379,7 +379,7 @@ The objective of the research is to implement four gradient descent method on Be
 
 We can see that the Adam method outperformed the rest methods. And in practice, Adam is also a very good choice with fairly fast speed. To avoid stuck in saddle points, opitmal grident descent method not only can solve this problem, but also have faster convergence rate.\vspace{3mm}
 
-During the experiment, There were two main difficulties I encountered. The first is about tuning the parameter of each algrithm, I used excel to record each parameter and corresbonding convergence rate, and finally get a fairly fast parameter setting. The second difficulty is about visualizing the descent process. Actually the ploting process takes much more time than the solution time. Because the program have to plot each passing dot which is a time consuming process. So I limited the total iteration number. And by doing this, I can plot qucker and get an visualize compare result of convergence speed between each method since the iteraion time is the same.\vspace{3mm}
+During the experiment, There were mainly two difficulties I encountered. The first is about tuning the parameter of each algrithm, I used excel to record each parameter and corresbonding convergence rate, and finally get a fairly good parameter setting. The second difficulty is about visualizing the descent process. Actually the ploting process takes much more time than the solution time. Because the program have to plot each passing dot using a large array which is a time consuming process. So I limited the total iteration number. And by doing this, I can plot quicker and get an visualized result of convergence speed of each method since the iteraion time is the same.\vspace{3mm}
 
 In summary, a first hand experience on how to implement gradient discent method using python has gained through the experiment. And I have gained more intuitive understanding of how each method works and what difficulties each method intends to tackle.\vspace{8mm}
 
