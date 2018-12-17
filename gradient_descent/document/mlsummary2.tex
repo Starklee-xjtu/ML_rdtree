@@ -99,7 +99,7 @@
 % lab write-up.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\labtitle}{gradient descent method report}
+\newcommand{\labtitle}{Course summary}
 \newcommand{\authorname}{Zixuan Li}
 \newcommand{\professor}{Jianyong Sun}
 \newcommand{\classno}{3118103163}
@@ -120,7 +120,7 @@
 {\Large \textsc{\labtitle} \\ \vspace{4pt}}
 \rule[13pt]{\textwidth}{1pt} \\ \vspace{150pt}
 {\large  \authorname \\ \vspace{10pt}
-student number \classno\\ \vspace{10pt}
+student number: \classno\\ \vspace{10pt}
 professor: \professor \\ \vspace{10pt}
 \today}
 \end{center}
@@ -136,96 +136,171 @@ professor: \professor \\ \vspace{10pt}
 \section{Research Background}
 %No Text Here
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{research purpose}
+
 \begin{comment}
 This is a lab template which has a ton of different things which are useful in writing lab write-ups in the Computer Eningeering field.  This is demonstrating the comment block. Don't be overwhelmed, it may seem like a lot to take in at a time, but it's worth spending the time learning it.
 \end{comment}
+The term "big data" now adays tends to refer to the method of data analytics method rather than the tradional definition. And the machine learning plays a vital role in devising complex models and to predict. In practice Artifical Nerual network is a vital modeling tool of complex data. The most basic component of the neural network is the neuron model. In the neural network, each neuron is connected to other neurons, and when it is stimulated, it will send signal to the other connected neurons. And the connection have different weight, thus has different impact on the other neurons. The total input value received by the neuron will be compared with the threshold value of the neuron and then processed by the activation function to produce the output of the neuron.\vspace{3mm}
 
-The purpose of this experiment is to optimize Beale function by using gradient descent, momentum, Nesterov accelerated gradient(NAG), and Adaptive Moment Estimation (Adam) algorithms.\vspace{3mm}
+Training neural network is to give a training data set, and continuously adjust the transmission weight and activation function in the neural network to reduce the gap between the predicted value and the data set. If the error of the neural network in the training set is expressed by $\epsilon$ and it is obviously a function of the connection weight $\omega$ and the threshold value $\theta$ . This funciton is also called cost function. The training process of the neural network can be regarded as a parameter optimization process. That is, in the parameter space, finding a set of optimal parameters makes $\epsilon$ minimum. Therefore optimisation algorithms play a vital role.\vspace{3mm}
 
-According to the definition by Khon nen, neural network is an extensive parallel interconnected network composed of simple units with adaptability, and its organization can simulate the interaction of biological nervous system with real world objects [ Koho nen, 1988 ]. In machine learning, the neural network means neural network leaning which is an interdisciplinanry field of study.\vspace{3mm}
-
-The most basic component of the neural network is the neuron model. In the neural network, each neuron is connected to other neurons, and when it is stimulated, it will send signal to the other connected neurons. And the connection have different weight, thus has different impact on the other neurons. The total input value received by the neuron will be compared with the threshold value of the neuron and then processed by the activation function to produce the output of the neuron.
-Training neural network is to give a training data set, and continuously adjust the transmission weight and activation function in the neural network to reduce the gap between the predicted value and the data set. If the error of the neural network in the training set is expressed by $\epsilon$ and it is obviously a function of the connection weight $\omega$ and the threshold value $\theta$ . At this time, the training process of the neural network can be regarded as a parameter optimization process. That is, in the parameter space, finding a set of optimal parameters makes $\epsilon$ minimum.\vspace{3mm}
+This papaer set out to summarize the optimisation methods lectured during the class. Since the author's professional background is not mathematics, there may be mistakes in the summary. The paper will include the following section.
 
 
-Gradient descent is the most widely used parameter optimization method, in which we start from some initial solutions. In each iteration, we first calculate the gradient of the error function $\epsilon(x)$ at the current point and then determine the search direction according to the gradient. The learning rate $\eta$ determines the step of each iteration. Many deep learning project use various algorithms to optimize gradient descent, but in these large models, the optimization algorithm is often a black box model. Therefore, the purpose of this experiment is to optimize a test function by using several commonly used gradient descent algorithms, and to gain a more intuitive understanding of several gradient descent algorithms by writing code and visualizing the descent process.
 \vspace{3mm}
 
-The test function used in this research is Beale function:\vspace{3mm}
-\begin{align*}
-  f(x,y)=\left(1.5-x+xy\right)^{2}+\left(2.25-x+xy^{2}\right)^{2}
-\end{align*}
 
-Global minimum is $f(3,0.5)=0$ in search domain $-4.5\leq x,y\leq 4.5$.
-
-\begin{figure}[H]
-  \centering
-  \label{fig:Beale1}\includegraphics[width=0.5\textwidth]{3dplot.png}\
-  \caption{3d plot of Beale function }
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \label{fig:Beale2}\includegraphics[width=0.8\textwidth]{contour.png}\
-  \caption{contour plot of Beale function and global minimum}
-\end{figure}
-
-
-
-In this paper, Gradient descent, Momentum, Nesterov accelerated gradient, and Adaptive Moment Estimation will be used to solve the global minimal point of Beale Function. The characteristics of various gradient descent methods are known through experiments. The report will consist of the following five main parts:
 \begin{itemize}
-	\item Gradient descent method
-	\item Momentum methods
-	\item Nesterov accelerated gradient(NAG) method
-  \item Adaptive Moment Estimation(ADAM) methon
-	\item Conclusion and Discussion
+	\item Gradient descent
+  \item Subgradient descent
+  \item Projected Subgradient descent
+	\item Proximal gradient descent
+  \item Projected proximal gradient descent
+	\item ADMM
 \end{itemize}
 \vspace{3mm}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{compile environment}
-Python is used for experiments. The relevant compilation environment is as follows:
-	\begin{itemize}
-		\item OS：Windows 10
-		\item Complier：python3.6
-		\item numpy（scientific computing package）
-		\item matplotlib（python visualize package）
-	\end{itemize}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{procedure}
-
-	\begin{enumerate}
-		\item programming to visualize Beale function.
-		\item programming the four algorithm.
-		\item Adjust parameters in each algorithms, such as learning rate, to achieve fastest convergence rate.
-		\item Run the program, examine the route of convergence to gain insight into each algorithm.
-		\item Output related graphs and data
-		\item Finish the experiment report.
-	\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
-\section{Gradient Descent Method}
-\subsection{algorithm introduction}
-The gradient descent method is very easy to understand. The gradient direction indicates the direction where the function grows fastest, so the opposite direction is the direction where the function decreases fastest. For the problem of machine learning model optimization, when we need to solve the minimum value, we can find the optimal value by moving in the direction of gradient descent.\vspace{3mm}
+\section{Gradient descent}
+The gradient descent method is very easy to understand. The gradient direction indicates the direction where the function grows fastest, so the opposite direction is the direction where the function decreases fastest. For the problem of machine learning model optimization, when we need to solve the minimum value, we can find the optimal value by moving in the direction of gradient descent. We can also interpret gradient descent by quadratic approximation of the function.\vspace{3mm}
+
+\begin{align*}
+  x^{k+1} = x^{k} − t_k \nabla f(x^{k}),k =1,2,\dots
+\end{align*}
 
 
-The main process of GD algorithm can be summarized as follows:
+Thus the gradient descent introduced us to the next question, how much step should we take in each iteration.\vspace{3mm}
+The first option also is the simplist one is to choose fixed step size. If the step is too big, the algrithm may divergem. And algrithm can be slow if the step is too small. So we need to use convergence analysis which can give us an idea of the right value of step.\vspace{3mm}
 
-\begin{enumerate}
-	\item input: Function to be solved$f(x,y)$, derivative of funcition to be solved${f(x,y)}'$, start point$P(x_0,y_0)$, the step size along the gradient descent direction $step$
-	\item for $(abs(grad)> 1e-6)$ do
-	\item compute the derivative of current point $P(x,y)$
-  \item $gradient = -{f(P_t)}'$
-	\item updated the next point as $P_{t+1}=P_t - step*gradient$
-  \item end
-	\item output: the convergence point $P_{convergence}$
-\end{enumerate}
+Assume that f convex and differentiable, with $dom(f) = \mathbb{R}^{n}$, and additionally $\nabla f$ is Lipschitz continuous with constant L>0, then gradient descent guarantees convergence with convergence rate $O(1/\epsilon)$ \vspace{3mm}
 
+Naturely we want to choose the step size adaptively. One way to do this is to use backtracking line search, which limits the descent step with two fix parameter. if the step does not fit the requirement, the step will shrink according to one of the parameter. This method can guarantee convergence. Also, if we want to achieve fasteset convergence speed, we can use Exact line search. The exact line search choose the step that cause the function to descend largest value in each iteration. However, this method is not very efficient as backtracking line search. \vspace{3mm}
+
+Based on grident descent, there are also many optimization algrithm of grident descent. Such as  Momentum, Adagrad, RSProp, Adaptive moment estimation (ADAM), etc. See the mlreport2 for more information. \vspace{3mm}
+
+\section{Subgradient descent}
+Subgradient is a generalization of gradient.
+There can be many subgradients for one function. If the function is differentiable, then the subgradient is the one and only gradient. If not, then the subgradient is in an interval.\vspace{3mm}
+
+A subgradient of a convex function f at x is any $g \in \mathbb{R}^{n}$
+
+\begin{align*}
+  f(y) \geq f(x) + g^{T}(y-x) for \forall y
+\end{align*}
+
+
+The set of all subgradients is called subdifferential and is a closed convex set. for example: for Indicator Function, subdifferential is a normal cone.\vspace{3mm}
+
+For subgradient we can also perform convex optimization and analysis. So why import the notion of subgradient? Take Lasso problem as an example. Under some conditions, it is nondifferentiable. And the solution to nondifferentiable problems can be achieved through the generalization of gradients -- subgradient.\vspace{3mm}
+
+The corresponding optimization condition is
+\begin{align*}
+  f(x^{*}) = \mathop{min}\limits_{x} \Leftrightarrow 0 \in \partial f(x)
+\end{align*}
+
+
+Eventhough the subgradient optimality do not present an solution for $\beta$. We can get a corollary that if $|X_i^{T}(y-X\beta)| \leq \lambda$ then $\beta_i =0$ .\vspace{3mm}
+
+And when $X=I$ the solution of this simplified lasso problem is the soft-thresholding operator.\vspace{3mm}
+
+Through convergence analysis, subgradient method has convergence rate $O(1/\epsilon^2)$. Comparing with $O(1/\epsilon)$ of gradient descent, it is fairly slow.\vspace{3mm}
+
+And since the sub-gradient do not guarantee the descent, all iterative solutions are retained and then the minimum value is taken.\vspace{3mm}
+
+one tip is that the step size of subgradient descent has to be square summable, not summable.\vspace{3mm}
+
+One example for subgradient descent is Logistic regression.For different step size, there is a big difference between different step of of descent vibration and speed.\vspace{3mm}
+
+Polyak step sizes can automatically get step size and reduces RHS. However the convergence rate won't change, and according to theorem it can not be faster.\vspace{3mm}
+
+Though subgradient has broad applicablility, it has a really slow convergence rate.\vspace{3mm}
+
+
+\section{Projected subgradient descent}
+
+Projected subgradient method sets out to optimize a convex set C. The x was project onto C at each iteration and the rest is like the subgradient method.
+\begin{align*}
+  x^{k} = P_c(x^{k-1}-t_kg^{k-1}),k =1,2,\dots
+\end{align*}
+
+However, the $P_c$ is generally hard to derivate. And the famous alternating projection algorithm is keep projecting between two convex sets.\vspace{3mm}
+
+\section{Proximal gradient descent}
+Proximal gradient methods are a generalized form of projection used to solve non-differentiable convex optimization problems. For decomposable functions:
+\begin{align*}
+f(x)=g(x)+h(x)
+\end{align*}
+
+f(x):convex and smooth. g(x):convex but not necessarily diffentiable. If f were differentiable, then we can use gradient descent. If $f(x)$ were not differentiable, then we can only make quadratic approximation to $g(x)$.\vspace{3mm}
+
+\begin{align*}
+x ^ { + } = \underset { z } { \operatorname { argmin } } \tilde { g } ( z ) + h ( z )\\
+= \underset { z } { \operatorname { argmin } } g ( x ) + \nabla g ( x ) ^ { T } ( x - z ) + \frac { 1 } { 2 t } \| x - z \| _ { 2 } ^ { 2 } + h ( z )\\
+=\underset { z } { \operatorname { argmin } } \frac { 1 } { 2 t } \| z - ( x - t \cdot \nabla g ( x ) ) \| _ { 2 } ^ { 2 } + h ( z )
+\end{align*}
+
+$\frac { 1 } { 2 t } \| z - ( x - t \cdot \nabla g ( x ) ) \| _ { 2 } ^ { 2 }$ this can interpret as forcing the z to stay close to the gradient update for g.\vspace{3mm}
+
+And now we can define the proximal mapping
+\begin{align*}
+\operatorname { prox } _ { t } ( x ) = \underset { z } { \operatorname { argmin } } \frac { 1 } { 2 t } \| x - z \| _ { 2 } ^ { 2 } + h ( z )
+\end{align*}
+
+Proximal gradient descent can be expressed as:
+\begin{align*}
+x ^ { ( k ) } = \operatorname { prox } _ { t _ { k } } \left( x ^ { ( k - 1 ) } - t _ { k } \nabla g \left( x ^ { ( k - 1 ) } \right) \right) , k = 1,2 , \cdots
+\end{align*}
+
+similar to gradient descent, we can also use backtracking line search for Proximal gradient descent.\vspace{3mm}
+
+Proximal gradient descent is a generalized gradient descent becasue when minimizing f= g+h.
+if $h(x)=0$ it is gradient descent method. if $h=I_c$ it is projected gradient descent. If $g=0$  it is proximal minimization algorithm.\vspace{3mm}
+
+The projected gradient descent is to use the normal gradient descent update step and then project the step onto C.\vspace{3mm}
+
+And the proximal minimization's update step is
+\begin{align*}
+x ^ { + } = \underset { z } { \operatorname { argmin } } \frac { 1 } { 2 t } \| x - z \| _ { 2 } ^ { 2 } + h ( z )
+\end{align*}
+This method is only implementable if we know prox in closed form.\vspace{3mm}
+
+One exampe of the proximal gradient descent is iterative shrinkage-thresholding algorithm (ISTA). It is an algrithm with $O(1/\epsilon)$ convergence rate. And it can use to solve matrix completion question.\vspace{3mm}
+
+For a lasso problem
+\begin{align*}
+\min _ { \beta \in \mathcal { R } ^ { p } } \frac { 1 } { 2 } \| y - X \beta \| _ { 2 } ^ { 2 } + \lambda \| \beta \| _ { 1 }
+\end{align*}
+consider $ g ( \beta ) = \frac { 1 } { 2 } \| y - X \beta \| _ { 2 } ^ { 2 } , h ( \beta ) = \| \beta \| _ { 1 }$ .Then the prox mapping is:
+
+\begin{align*}
+\operatorname { prox } _ { t } ( \beta ) = \underset { z } { \operatorname { argmin } } \frac { 1 } { 2 t } \| \beta - z \| _ { 2 } ^ { 2 } + \lambda \| z \| _ { 1 } = S _ { \lambda t } ( \beta )
+\end{align*}
+
+$S _ { \lambda } ( \beta )$ is the soft-thersholding operator:
+
+\begin{align*}
+\left[ S _ { \lambda } ( \beta ) \right] _ { i } = \left\{ \begin{array} { l l } { \beta _ { i } - \lambda } & { \text { if } \beta _ { i } > \lambda } \\ { 0 } & { \text { if } - \lambda \leq \beta _ { i } \leq \lambda } \\ { \beta _ { i } + \lambda } & { \text { if } \beta _ { i } < - \lambda } \end{array} \right.
+\end{align*}
+
+And The FISTA algorithm is an accelerated ISTA algorithm. Its difference from ISTA is: Nesterove acceleration method is used. However FISTA may not be effective for Matrix Completion.\vspace{3mm}
+
+
+
+\section{ADMM}
+
+This part I haven't understand completely. I only have a gerneral idea of what this method is. I will spend more time understanding this part after the end of the course.\vspace{3mm}
+
+for a convex equality constrained optimization problem, it can be tranformed in to largrangian problem. And it can transformed into a dual problem: maximize $ {inf}_xL(x,y)$. Then the dual ascent update can be used for the dual problem. The through dual decomposation we can devide the original problem into more small part. And to speed up dual ascent algrithm. The augmented lagrangian which allow the alogrithm to convergen under a more relaxed condition. However it can not be decomposed. And the ADMM alogrithm is employed to solve this question. It combines the decomposability of the dual ascending method with the convergence property of the upper bound of the multiplier method. And ADMM enable us to deploy a master slave architecture solver.
+
+\newpage
+\section{Acknowledgements}
+I would like to express my gratitude to professor Jianyong Sun. Thank you for the profond and vivid lessons you have brought us this semester!
+\end{document} % DONE WITH DOCUMENT!
+\begin{comment}
 
 \subsection{result}
 The start point as the exercise requirement is set at $P(3,4)$ . As for the step size , If it is less than $1 / L$. Then it can guarantee convergence (L is the Lipschitz constant of the gradient of the objective function). The definition of Lipschitz can be expressed as followed.
@@ -246,6 +321,8 @@ The source code of this algorithm is as follows.  \vspace{5mm}
 	\lstinputlisting[language=Python, title=GD.py]{GD.py}
 	\vspace{3mm}
 
+  \end{document} % DONE WITH DOCUMENT!
+  \begin{comment}
 
 
 \newpage
@@ -526,7 +603,7 @@ PCA后分类正确率为：0.9004
 
 最后感谢孟教授这学期的教学，您的课干货满满，深入浅出。只是有些可惜课时太少，很希望未来机器学习这门课可以调整成全周的课程。顺颂时祺。
 
-\end{document} % DONE WITH DOCUMENT!
+
 
 
 
