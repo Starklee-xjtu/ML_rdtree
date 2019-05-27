@@ -15,24 +15,58 @@ import sys
 import importlib
 import os
 importlib.reload(sys)
+global category
+category=['0']
+os.getcwd()
+print("上一级的工作目录为：%s" %os.path.abspath('..'))
+
+path0=os.path.abspath('..')
+print(path0)
+
 
 # 加载文件，导入数据,分词
 def loadfile():
-    neg=pd.read_excel('D:\github_rep\ML_rdtree\Sentiment-Analysis/data/neg.xls',header=None,index=None)
-    pos=pd.read_excel('D:\github_rep\ML_rdtree\Sentiment-Analysis/data/pos.xls',header=None,index=None)
+    ori=pd.read_excel(os.path.join(path0,'data/projectinfo.xlsx'),header=None,index=None)
+    ori=ori.dropna(axis=0)
+    print(ori.shape)
+    tempdic={'description':[]}
+    global category
+    cont=[]
+    num=0
+    for i in range(1,ori.shape[0]):
+        temp1=ori.iloc[i,0]
+        temp2=ori.iloc[i,1]
+        temp3=ori.iloc[i,2]
+        temp4=ori.iloc[i,3]
+        temp0=temp1+temp2+temp3+temp4
+        temp5=ori.iloc[i,6]
 
+        for j in range(0,len(category)):
+            if temp5 == category[j]:
+                num = j
+                break
+            if j==len(category)-1:
+                category.append(temp5)
+                num = j+1
+
+        cont.append(num)
+
+        tempdic['description'].append(temp0)
+
+    des_p=pd.DataFrame(tempdic)
     cw = lambda x: list(jieba.cut(x))
-    pos['words'] = pos[0].apply(cw)
-    neg['words'] = neg[0].apply(cw)
+    print('0')
+    des_p['word'] = des_p['description'].apply(cw)
 
     #print pos['words']
     #use 1 for positive sentiment, 0 for negative
-    y = np.concatenate((np.ones(len(pos)), np.zeros(len(neg))))
-
-    x_train, x_test, y_train, y_test = train_test_split(np.concatenate((pos['words'], neg['words'])), y, test_size=0.2)
-    
-    np.save('D:\github_rep\ML_rdtree\Sentiment-Analysis/svm_data/y_train.npy',y_train)
-    np.save('D:\github_rep\ML_rdtree\Sentiment-Analysis/svm_data/y_test.npy',y_test)
+    y = np.array(cont)
+    print('1')
+    x_train, x_test, y_train, y_test = train_test_split(np.array((des_p['description'])), y, test_size=0.2)
+    print('2')
+    np.save(os.path.join(path0,'svm_data/y_train.npy'),y_train)
+    np.save(os.path.join(path0,'svm_data/y_test.npy'),y_test)
+    print('finishload')
     return x_train,x_test
  
 
@@ -49,6 +83,8 @@ def buildWordVector(text, size,imdb_w2v):
             continue
     if count != 0:
         vec /= count
+
+
     return vec
     
 #计算词向量
@@ -64,24 +100,27 @@ def get_train_vecs(x_train,x_test):
     train_vecs = np.concatenate([buildWordVector(z, n_dim,imdb_w2v) for z in x_train])
     #train_vecs = scale(train_vecs)
     
-    np.save('D:\github_rep\ML_rdtree\Sentiment-Analysis\svm_data/train_vecs.npy',train_vecs)
+    np.save(os.path.join(path0,'svm_data/train_vecs.npy'),train_vecs)
     print (train_vecs.shape)
     #Train word2vec on test tweets
     imdb_w2v.train(x_test,epochs=imdb_w2v.epochs,total_examples=imdb_w2v.corpus_count)
-    imdb_w2v.save('D:\github_rep\ML_rdtree\Sentiment-Analysis\svm_data\w2v_model/w2v_model.pkl')
+    imdb_w2v.save(os.path.join(path0,'svm_data/w2v_model/w2v_model.pkl'))
     #Build test tweet vectors then scale
     test_vecs = np.concatenate([buildWordVector(z, n_dim,imdb_w2v) for z in x_test])
     #test_vecs = scale(test_vecs)
-    np.save('D:\github_rep\ML_rdtree\Sentiment-Analysis\svm_data/test_vecs.npy',test_vecs)
+    np.save(os.path.join(path0,'svm_data/test_vecs.npy'),test_vecs)
     print (test_vecs.shape)
+
+    print('get train vector')
 
 
 
 def get_data():
-    train_vecs=np.load('D:\github_rep\ML_rdtree\Sentiment-Analysis\svm_data/train_vecs.npy')
-    y_train=np.load('D:\github_rep\ML_rdtree\Sentiment-Analysis\svm_data/y_train.npy')
-    test_vecs=np.load('D:\github_rep\ML_rdtree\Sentiment-Analysis\svm_data/test_vecs.npy')
-    y_test=np.load('D:\github_rep\ML_rdtree\Sentiment-Analysis\svm_data/y_test.npy')
+    train_vecs=np.load(os.path.join(path0,'svm_data/train_vecs.npy'))
+    y_train=np.load(os.path.join(path0,'svm_data/y_train.npy'))
+    test_vecs=np.load(os.path.join(path0,'svm_data/test_vecs.npy'))
+    y_test=np.load(os.path.join(path0,'svm_data/y_test.npy'))
+    print('get data')
     return train_vecs,y_train,test_vecs,y_test
     
 
@@ -89,35 +128,36 @@ def get_data():
 def svm_train(train_vecs,y_train,test_vecs,y_test):
     clf=SVC(kernel='rbf',verbose=True)
     clf.fit(train_vecs,y_train)
-    joblib.dump(clf, 'D:\github_rep\ML_rdtree\Sentiment-Analysis\svm_data/svm_model/model.pkl')
+    joblib.dump(clf, os.path.join(path0,'svm_data/svm_model/model.pkl'))
     print (clf.score(test_vecs,y_test))
+    print('trainSVM')
     
     
 ##得到待预测单个句子的词向量    
 def get_predict_vecs(words):
     n_dim = 300
-    imdb_w2v = Word2Vec.load('D:\github_rep\ML_rdtree\Sentiment-Analysis\svm_data/w2v_model/w2v_model.pkl')
+    imdb_w2v = Word2Vec.load(os.path.join(path0,'svm_data/w2v_model/w2v_model.pkl'))
     #imdb_w2v.train(words)
     train_vecs = buildWordVector(words, n_dim,imdb_w2v)
+    print('get_predict_word')
     #print train_vecs.shape
     return train_vecs
     
 ####对单个句子进行情感判断    
 def svm_predict(string):
+    global category
     words=jieba.lcut(string)
     words_vecs=get_predict_vecs(words)
-    clf=joblib.load('D:\github_rep\ML_rdtree\Sentiment-Analysis\svm_data/svm_model/model.pkl')
+    clf=joblib.load(os.path.join(path0,'svm_data/svm_model/model.pkl'))
      
     result=clf.predict(words_vecs)
-    
-    if int(result[0])==1:
-        print (string,' positive')
-    else:
-        print (string,' negative')
+    print (category[int(result[0])])
+    return 0
+
 if __name__=='__main__':
     
     
-    ##导入文件，处理保存为向量
+    #导入文件，处理保存为向量
     x_train,x_test=loadfile() #得到句子分词后的结果，并把类别标签保存为y_train。npy,y_test.npy
     get_train_vecs(x_train,x_test) #计算词向量并保存为train_vecs.npy,test_vecs.npy
     train_vecs,y_train,test_vecs,y_test=get_data()#导入训练数据和测试数据
@@ -125,7 +165,6 @@ if __name__=='__main__':
     
 
 ##对输入句子情感进行判断
-    string='电池充完了电连手机都打不开.简直烂的要命.真是金玉其外,败絮其中!连5号电池都不如'
-    #string='牛逼的手机，从3米高的地方摔下去都没坏，质量非常好'    
+    string='甲醇制烯烃（二期）项目'
     svm_predict(string)
     
