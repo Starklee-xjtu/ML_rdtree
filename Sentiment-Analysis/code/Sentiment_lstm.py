@@ -7,22 +7,31 @@ import multiprocessing
 import numpy as np
 from gensim.models.word2vec import Word2Vec
 from gensim.corpora.dictionary import Dictionary
-
 from keras.preprocessing import sequence
 from keras.models import Sequential
 from keras.layers.embeddings import Embedding
 from keras.layers.recurrent import LSTM
 from keras.layers.core import Dense, Dropout,Activation
 from keras.models import model_from_yaml
-np.random.seed(1337)  # For Reproducibility
+from keras.callbacks import EarlyStopping,ReduceLROnPlateau
+import tensorflow as tf
+import keras.backend.tensorflow_backend as KTF
 import jieba
 import pandas as pd
 import sys
 import importlib
 import os
+import matplotlib.pyplot as plt
+CUDA_VISIBLE_DEVICES=1
+
 importlib.reload(sys)
 global category
-category=['0']
+category=['表头']
+
+
+np.random.seed(1337)  # For Reproducibility
+
+
 os.getcwd()
 print("上一级的工作目录为：%s" %os.path.abspath('..'))
 
@@ -31,24 +40,24 @@ print(path0)
 
 sys.setrecursionlimit(1000000)
 # set parameters:
-vocab_dim = 100
+vocab_dim = 384
 maxlen = 100
-n_iterations = 1  # ideally more..
+n_iterations = 500 # ideally more..
 n_exposures = 10
 window_size = 7
 batch_size = 32
-n_epoch = 4
+n_epoch = 200
 input_length = 100
 cpu_count = multiprocessing.cpu_count()
 
 
 #加载训练文件
 def loadfile():
+    global category
     ori = pd.read_excel(os.path.join(path0, 'data/projectinfo.xlsx'), header=None, index=None)
     ori = ori.dropna(axis=0)
     print(ori.shape)
     tempdic = {'description': []}
-    global category
     cont = []
     num = 0
     for i in range(1, ori.shape[0]):
@@ -56,7 +65,9 @@ def loadfile():
         temp2 = ori.iloc[i, 1]
         temp3 = ori.iloc[i, 2]
         temp4 = ori.iloc[i, 3]
-        temp0 = temp1 + temp2 + temp3 + temp4
+        temp10 = ori.iloc[i, 4]
+        temp11 = ori.iloc[i, 5]
+        temp0 = temp1+temp2+temp3+temp4+temp10
         temp5 = ori.iloc[i, 6]
 
         for j in range(0, len(category)):
@@ -66,10 +77,27 @@ def loadfile():
             if j == len(category) - 1:
                 category.append(temp5)
                 num = j + 1
-
         cont.append(num)
+    maxnum=min([cont.count(1),cont.count(2),cont.count(3),cont.count(4),cont.count(5),cont.count(6),cont.count(7)])
+    print(maxnum)
+    cont=[]
+    print(category)
+    for i in range(1, ori.shape[0]):
+        temp1 = ori.iloc[i, 0]
+        temp2 = ori.iloc[i, 1]
+        temp3 = ori.iloc[i, 2]
+        temp4 = ori.iloc[i, 3]
+        temp10 = ori.iloc[i, 4]
+        temp11 = ori.iloc[i, 5]
+        temp0 = temp1 + temp2 + temp3 + temp4 + temp10
+        temp5 = ori.iloc[i, 6]
 
-        tempdic['description'].append(temp0)
+        for j in range(1, len(category)):
+            if temp5 == category[j]and cont.count(j)<=maxnum:
+                num = j
+                cont.append(num)
+                tempdic['description'].append(temp0)
+                break
 
     des_p = pd.DataFrame(tempdic)
     print('0')
@@ -174,8 +202,12 @@ def train_lstm(n_symbols,embedding_weights,x_train,y_train,x_test,y_test):
                         mask_zero=True,
                         weights=[embedding_weights],
                         input_length=input_length))  # Adding Input Length
-    model.add(LSTM(output_dim=50, activation='sigmoid', inner_activation='hard_sigmoid'))
-    model.add(Dropout(0.5))
+    print (n_symbols)
+    print (vocab_dim)
+
+    model.add(LSTM(output_dim=384, activation='sigmoid'))
+    # model.add(LSTM(output_dim=128, activation='sigmoid'))
+    model.add(Dropout(0.3))
     model.add(Dense(len(category)-1))
     model.add(Activation('sigmoid'))
     print ('Compiling the Model...')
@@ -183,8 +215,26 @@ def train_lstm(n_symbols,embedding_weights,x_train,y_train,x_test,y_test):
                   optimizer='adam',metrics=['accuracy'])
 
     print ("Train...")
+    ES = EarlyStopping(monitor='val_loss', patience=10, verbose=0, mode='auto')
+    re_lr = ReduceLROnPlateau(monitor='val_loss',factor=0.2,patience=5,min_lr=0.0001)
+    history=model.fit(x_train, y_train,callbacks=[re_lr,ES], batch_size=batch_size, nb_epoch=n_epoch,verbose=1, validation_data=(x_test, y_test))
 
-    model.fit(x_train, y_train, batch_size=batch_size, nb_epoch=n_epoch,verbose=1, validation_data=(x_test, y_test))
+    plt.plot(history.history['acc'])
+    plt.plot(history.history['val_acc'])
+    plt.title('model accuracy')
+    plt.ylabel('accuracy')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'test'], loc='upper left')
+    plt.show()
+
+    # summarize history for loss
+    plt.plot(history.history['loss'])
+    plt.plot(history.history['val_loss'])
+    plt.title('model loss ')
+    plt.ylabel('loss')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'test'], loc='upper left')
+    plt.show()
 
     print ("Evaluate...")
     score = model.evaluate(x_test, y_test,
@@ -230,24 +280,25 @@ def lstm_predict(string):
 
     print ('loading weights......')
     model.load_weights(os.path.join(path0,'lstm_data/lstm.h5'))
-    model.compile(loss='binary_crossentropy',
+    model.compile(loss='categorical_crossentropy',
                   optimizer='adam',metrics=['accuracy'])
     data=input_transform(string)
     data.reshape(1,-1)
     #print data
     re=category
     result=model.predict_classes(data)
-    n = result[0]
+    n = result[0]+1
     print(category[int(n)])
 
 if __name__=='__main__':
     loadfile()
     train()
     print(category)
-    string='该项目每年产出乙醇180万吨、占地面积80万平方米'
+    string='化工'
     lstm_predict(string)
-    string='建设2×300兆瓦燃煤双抽供热机组。建设2×300兆瓦燃煤双抽供热机组。'
+    string='交通运输'
     lstm_predict(string)
-    string='大唐渭河发电厂，建设1×50兆瓦双抽机组、1×25兆瓦背压机组，3台260吨/时高温高压煤粉锅炉。'
+    string='电力'
+
     lstm_predict(string)
 
